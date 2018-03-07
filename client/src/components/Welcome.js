@@ -5,11 +5,11 @@ class Welcome extends Component{
 
     render(){
         return(
-            <div style={{margin:'20px',border: '0px solid transparent' , backgroundColor: '#4183f4', position: 'fixed', bottom: '0', right: '0', left: '0', top: '0'}}>
+            <div style={{margin:'10px',border: '0px solid transparent' , background: 'linear-gradient(to right,#4f41f4,#4170f4 )', position: 'fixed', bottom: '0', right: '0', left: '0', top: '0'}}>
 
-                <nav className="navbar navbar-default" style={{ backgroundColor: 'white', border: '0px solid transparent'}}>
+                <nav className="navbar navbar-default" style={{ backgroundColor: 'white', border: '1px solid black transparent'}}>
                     <a href="http://localhost:3000/">
-                    <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}} />
+                        <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}} />
                     </a>
                     <ul className="nav navbar-nav navbar-right">
                         <li><a href="http://localhost:3000/signup" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

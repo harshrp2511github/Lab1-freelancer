@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var multer = require('multer');
 var upload =  multer({dest: './uploads'});
 var flash = require('flash');
-
+var cors = require('cors');
 
 
 
@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 //Handle sessions
 app.use(session({
