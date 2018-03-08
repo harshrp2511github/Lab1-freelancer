@@ -9,7 +9,7 @@ class Message extends Component {
 
     render() {
         return (
-            <div className="row justify-content-md-center" style={{paddingLeft: '50px', fontSize: '30px'}}>
+            <div className="row justify-content-md-center">
                 {this.props.message}
 
                 </div>

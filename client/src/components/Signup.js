@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import freelancer from  '../images/download.png';
-import PropTypes from 'prop-types';
+import * as API from '../api/API';
+import Message from "./Message";
 
 
 class Signup extends Component{
@@ -9,7 +10,8 @@ class Signup extends Component{
     state={
         email: '',
         password: '',
-        username: ''
+        username: '',
+        message: ''
 
 
     }
@@ -18,9 +20,29 @@ class Signup extends Component{
         this.setState({
             email: '',
             password: '',
-            username: ''
+            username: '',
+            message: ''
         });
     }
+
+    handleSignUp = (userdata) => {
+
+        API.doSignUp(userdata)
+            .then((res) => {
+
+                if (res.status === 'true') {
+                    this.setState({
+                        message: "Signup Successfull..!!",
+                    });
+
+                } else if (res.status === 'false') {
+                    this.setState({
+
+                        message: "SignUp Failed"
+                    });
+                }
+            });
+    };
 
     render(){
         return(
@@ -134,16 +156,20 @@ class Signup extends Component{
                                         type="button"
                                         class="btn btn-primary btn-lg"
                                         style={{width: '200px'}}
-                                        onClick={() =>  this.props.handleSignUp(this.state)}
+                                        onClick={() =>  this.handleSignUp(this.state)}
                                     >
                                         Create Account
                                     </button>
                                 </div>
                             </div>
+
+                            <Message message={this.state.message}/>
                             <hr style={{borderWidth: '2px', width: '300px'}}/>
                             <br />
                             <h4> Already have an account?</h4>
                             <a href="http://localhost:3000/login">Login</a>
+
+
 
                         </fieldset>
                     </form>
