@@ -4,6 +4,9 @@ import Welcome from './Welcome';
 import Login from './Login';
 import Signup from './Signup';
 import Inapp from './Inapp';
+import Profile from './Profile';
+import UpdateProfile from './UpdateProfile';
+
 
 class StartPage extends Component{
 
@@ -40,6 +43,18 @@ class StartPage extends Component{
                 <Route exact path="/inapp" render={() => (
                     <div>
                         <Inapp />
+                    </div>
+                )}/>
+
+                <Route exact path="/profile" render={() => (
+                    <div>
+                        <Profile />
+                    </div>
+                )}/>
+
+                <Route exact path="/updateprofile" render={() => (
+                    <div>
+                        <UpdateProfile />
                     </div>
                 )}/>
 

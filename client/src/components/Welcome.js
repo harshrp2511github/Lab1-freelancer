@@ -5,15 +5,15 @@ class Welcome extends Component{
 
     render(){
         return(
-            <div style={{margin:'10px',border: '0px solid transparent' , background: 'linear-gradient(to right,#4f41f4,#4170f4 )', position: 'fixed', bottom: '0', right: '0', left: '0', top: '0'}}>
+            <div style={{marginTop: '10px',border: '0px solid transparent' , background: 'linear-gradient(to right,#4f41f4,#4170f4 )', position: 'fixed', bottom: '0', right: '0', left: '0', top: '0'}}>
 
-                <nav className="navbar navbar-default" style={{ backgroundColor: 'white', border: '1px solid black transparent'}}>
+                <nav className="navbar navbar-default" style={{ paddingLeft: '20px', paddingRight: '25px',backgroundColor: 'white', border: '1px solid black transparent'}}>
                     <a href="http://localhost:3000/">
                         <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}} />
                     </a>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="http://localhost:3000/signup" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="http://localhost:3000/login" style={{paddingRight:'30px'}}><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+                        <li><a href="http://localhost:3000/signup" style={{color: 'black', paddingTop: '25px'}} ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="http://localhost:3000/login" style={{color: 'black', paddingTop: '25px'}} ><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
                     </ul>
                 </nav>
 
