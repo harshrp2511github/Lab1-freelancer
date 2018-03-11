@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import freelancer from  '../images/download.png';
 import cover from '../images/cover.jpg';
 import profilebackground from '../images/profilebackground.jpg';
-import white from '../images/white.jpg'
-import {Link} from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
 import unknown from '../images/unknown.png';
+import white from '../images/white.jpg'
+import {connect} from "react-redux";
 import * as API from "../api/API";
-class Profile extends Component{
+
+class UpdateName extends Component{
+
+    p_name = '';
+    p_phone='';
+    p_about='';
+    p_skills='';
     state={
         email: this.props.user.email,
         name: '',
@@ -29,27 +35,29 @@ class Profile extends Component{
     setFields = (userdata) => {
         API.getProfile(userdata)
             .then((status) => {
-                //console.log(JSON.stringify(status));
+                console.log(JSON.stringify(status));
                 if (status.status == 'true') {
 
-                    this.setState({
-                        name: status.name,
-                        phone: status.phone,
-                        about: status.aboutme,
-                        skills: status.skills
-                    });
 
-                } else if (status.status == 'false') {
+                    this.p_name=status.name;
+                    this.p_phone=status.phone;
+                    this.p_about=status.about;
+                    this.p_skills=status.skills;
 
-                    this.setState({
-                        isLoggedIn: false,
-                        message: "Wrong username or password. Try again..!!"
-                    });
+
                 }
 
             });
     };
 
+    // handleChange=(e)=> {
+    //     this.setState({[e.target.name]: e.target.value});
+    // }
+
+    handleUpdate = (userinfo) => {
+        API.updateAbout(userinfo);
+        this.props.redirectURL("/profile");
+    };
 
     render(){
         this.setFields(this.state);
@@ -142,20 +150,18 @@ class Profile extends Component{
                         border: '1px solid ',
                         position: 'absolute'
                     }}>
+
                         <img src={unknown} style={{
                             width: '170px',
-                            height: '200px',
+                            height: '180px',
                             marginTop: '12px',
                             marginLeft: '-1px',
                             border: '1px solid',
-                            position: 'absolute'
                         }}/>
+                        <input type="file" name="Upload" style={{ marginTop: '5px', paddingLeft: '10px' }}/>
 
-                        <Link to="/updateprofile" className="btn" style={{ paddingLeft: '150px', paddingTop: '190px', color: 'black',width: '30px', height: '30px'}} ><span
-                            class="glyphicon glyphicon-camera"></span></Link>
 
                     </div>
-
                     <div style={{
                         width: '500px',
                         height: '625px',
@@ -168,40 +174,55 @@ class Profile extends Component{
                         paddingLeft: '50px',
                         paddingTop: '50px'
                     }}>
-                        Email: <br/>
-                        {this.state.email}<br/> <br/>
-                        Name: <Link to="/updatename"
-                                    style={{
-                                        color: 'black',
-                                        marginLeft: '55px'
-                                    }}>
-                        <span class="glyphicon glyphicon-edit"></span></Link><br />
-                        {this.state.name}<br/> <br/>
-                        Phone: <Link to="/updatephone"
-                                    style={{
-                                        color: 'black',
-                                        marginLeft: '54px'
-                                    }}>
-                        <span class="glyphicon glyphicon-edit"></span></Link><br />
-                        {this.state.phone}<br/> <br/>
-                        About Me: <Link to="/updateabout"
-                                    style={{
-                                        color: 'black',
-                                        marginLeft: '35px'
-                                    }}>
-                        <span class="glyphicon glyphicon-edit"></span></Link><br />
-                        {this.state.about}<br/> <br/>
-                        Skills: <Link to="/updateskills"
-                                    style={{
-                                        color: 'black',
-                                        marginLeft: '62px'
-                                    }}>
-                        <span class="glyphicon glyphicon-edit"></span></Link><br />
-                        {this.state.skills}<br/> <br/>
+                        <div class="form-group">
+
+                            Email: <br/>
+                            {this.state.email}<br/> <br/>
+                            About Me: <br />
+                            <div class="form-group">
+
+                                <textarea
+                                    style={{width: '300px', height: '400px',color: 'black'}}
+                                    type="text"
+                                    placeholder="Update your description.."
+                                    name="about"
+                                    onInput={(event)=>{
+                                        this.setState({
+                                            about:event.target.value});
+                                    }}
+                                    required
+                                />
+
+                            </div>
+                            <button
+                                type="button"
+                                className="btn"
+                                onClick={() => this.handleUpdate(this.state)}
+                                style={{
+                                    height: '40px',
+                                    marginTop: '5px',
+                                    paddingTop: '10px',
+                                    backgroundColor: '#fc951e',
+                                    color: 'black'
 
 
+                                }}>Update Description</button>
+
+                            <Link
+                                to="/profile"
+                                type="button"
+                                className="btn"
+                                style={{
+                                    height: '40px',
+                                    marginTop: '5px',
+                                    marginLeft: '5px',
+                                    paddingTop: '10px',
+                                    backgroundColor: '#fc951e',
+                                    color: 'black'
 
 
+                                }}>Cancel</Link>
+                        </div>
                     </div>
 
 
@@ -220,4 +241,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(UpdateName);

@@ -5,16 +5,19 @@ import Login from './Login';
 import Signup from './Signup';
 import Inapp from './Inapp';
 import Profile from './Profile';
-import UpdateProfile from './UpdateProfile';
+import UpdateName from './UpdateName';
+import UpdatePhone from './UpdatePhone';
+import UpdateAbout from './UpdateAbout';
+import UpdateSkills from './UpdateSkills';
 
 
 class StartPage extends Component{
 
- redirectURL = () => {
-     debugger;
-     this.props.history.push("/inapp");
+    redirectURL = (url) => {
+        debugger;
+        this.props.history.push(url);
 
- }
+    }
 
     render(){
         return(
@@ -29,7 +32,7 @@ class StartPage extends Component{
                 <Route exact path="/login" render={() => (
                     <div>
 
-                            <Login redirectURL={this.redirectURL} />
+                        <Login redirectURL={this.redirectURL} />
                     </div>
                 )}/>
 
@@ -52,9 +55,27 @@ class StartPage extends Component{
                     </div>
                 )}/>
 
-                <Route exact path="/updateprofile" render={() => (
+                <Route exact path="/updatename" render={() => (
                     <div>
-                        <UpdateProfile />
+                        <UpdateName redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/updatephone" render={() => (
+                    <div>
+                        <UpdatePhone redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/updateabout" render={() => (
+                    <div>
+                        <UpdateAbout redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/updateskills" render={() => (
+                    <div>
+                        <UpdateSkills redirectURL={this.redirectURL} />
                     </div>
                 )}/>
 

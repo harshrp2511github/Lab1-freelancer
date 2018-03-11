@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {loginUser} from "../actions";
 import freelancer from  '../images/download.png';
 import * as API from "../api/API";
@@ -42,7 +43,7 @@ class Login extends Component {
                         isLoggedIn: true,
                         message: "Welcome to Freelancer..!!",
                     });
-                    this.props.redirectURL();
+                    this.props.redirectURL("/inapp");
                 } else if (status.status == 'false') {
 
                     this.setState({
@@ -136,7 +137,7 @@ class Login extends Component {
                             <hr style={{borderWidth: '2px', width: '300px'}}/>
                             <br/>
                             <h4> Don't have an account yet?</h4>
-                            <a href="http://localhost:3000/signup">Signup Today</a>
+                            <Link to="/signup">Signup Today</Link>
 
                         </fieldset>
                     </form>

@@ -38,3 +38,107 @@ export const doSignUp = (payload) =>
             console.log("This is error");
             return error;
         });
+
+export const setProfile = (payload) =>
+    fetch(`${api}/users/setprofile`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const getProfile = (payload) =>
+    fetch(`${api}/users/getprofile`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const updateName = (payload) =>
+    fetch(`${api}/users/updatename`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const updatePhone = (payload) =>
+    fetch(`${api}/users/updatephone`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const updateSkills = (payload) =>
+    fetch(`${api}/users/updateskills`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const updateAbout = (payload) =>
+    fetch(`${api}/users/updateabout`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });

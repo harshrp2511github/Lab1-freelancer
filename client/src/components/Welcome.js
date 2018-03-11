@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import freelancer from  '../images/download.png';
 import front from '../images/freelancer.jpg';
+import {Link} from 'react-router-dom';
 class Welcome extends Component{
 
     render(){
@@ -8,12 +9,12 @@ class Welcome extends Component{
             <div style={{marginTop: '10px',border: '0px solid transparent' , background: 'linear-gradient(to right,#4f41f4,#4170f4 )', position: 'fixed', bottom: '0', right: '0', left: '0', top: '0'}}>
 
                 <nav className="navbar navbar-default" style={{ paddingLeft: '20px', paddingRight: '25px',backgroundColor: 'white', border: '1px solid black transparent'}}>
-                    <a href="http://localhost:3000/">
+                    <Link to="/">
                         <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}} />
-                    </a>
+                    </Link>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="http://localhost:3000/signup" style={{color: 'black', paddingTop: '25px'}} ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="http://localhost:3000/login" style={{color: 'black', paddingTop: '25px'}} ><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+                        <li><Link to="/signup" style={{color: 'black', paddingTop: '25px'}} ><span class="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+                        <li><Link to="/login" style={{color: 'black', paddingTop: '25px'}} ><span class="glyphicon glyphicon-log-in" ></span> Login</Link></li>
                     </ul>
                 </nav>
 
@@ -39,10 +40,8 @@ class Welcome extends Component{
                         It's easy. Simply post a job you need completed and receive competitive bids from freelancers within minutes.
                     </p>
                 </div>
-
             </div>
         );
     }
 }
-
 export default Welcome;

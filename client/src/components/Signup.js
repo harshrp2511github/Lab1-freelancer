@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import freelancer from  '../images/download.png';
 import * as API from '../api/API';
+import {Link} from 'react-router-dom';
 import Message from "./Message";
 
 
@@ -11,7 +12,8 @@ class Signup extends Component{
         email: '',
         password: '',
         username: '',
-        message: ''
+        message: '',
+        profile: ''
 
 
     }
@@ -21,7 +23,8 @@ class Signup extends Component{
             email: '',
             password: '',
             username: '',
-            message: ''
+            message: '',
+            profile: ''
         });
     }
 
@@ -32,13 +35,29 @@ class Signup extends Component{
 
                 if (res.status === 'true') {
                     this.setState({
-                        message: "Signup Successfull..!!",
+                        message: "Profile setup Successfully..!!",
                     });
 
                 } else if (res.status === 'false') {
                     this.setState({
 
-                        message: "SignUp Failed"
+                        message: "Profile setup Failed"
+                    });
+                }
+            });
+
+        API.setProfile(userdata)
+            .then((res) => {
+
+                if (res.status === 'true') {
+                    this.setState({
+                        profile: "Signup Successfull..!!",
+                    });
+
+                } else if (res.status === 'false') {
+                    this.setState({
+
+                        profile: "SignUp Failed"
                     });
                 }
             });
@@ -167,7 +186,7 @@ class Signup extends Component{
                             <hr style={{borderWidth: '2px', width: '300px'}}/>
                             <br />
                             <h4> Already have an account?</h4>
-                            <a href="http://localhost:3000/login">Login</a>
+                            <Link to="/login">Login</Link>
 
 
 

@@ -3,12 +3,64 @@ import freelancer from  '../images/download.png';
 import cover from '../images/cover.jpg';
 import profilebackground from '../images/profilebackground.jpg';
 import {Link} from 'react-router-dom'
-import unknown from '../images/unknown.jpg';
+import unknown from '../images/unknown.png';
+import white from '../images/white.jpg'
+import {connect} from "react-redux";
+import * as API from "../api/API";
 
-class UpdateProfile extends Component{
+class UpdateSkills extends Component{
+
+    p_name = '';
+    p_phone='';
+    p_about='';
+    p_skills='';
+    state={
+        email: this.props.user.email,
+        name: '',
+        phone: '',
+        about: '',
+        skills: ''
+    }
+
+    componentDidMount(){
+        this.setState({
+            email: this.props.user.email,
+            name: '',
+            phone: '',
+            about: '',
+            skills: ''
+        });
+    }
+
+    setFields = (userdata) => {
+        API.getProfile(userdata)
+            .then((status) => {
+                console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+
+                    this.p_name=status.name;
+                    this.p_phone=status.phone;
+                    this.p_about=status.about;
+                    this.p_skills=status.skills;
+
+
+                }
+
+            });
+    };
+
+    // handleChange=(e)=> {
+    //     this.setState({[e.target.name]: e.target.value});
+    // }
+
+    handleUpdate = (userinfo) => {
+        API.updateSkills(userinfo);
+        this.props.redirectURL("/profile");
+    };
 
     render(){
-
+        this.setFields(this.state);
         return <div style={{
             border: '0px solid transparent',
             marginTop: '10px',
@@ -28,12 +80,12 @@ class UpdateProfile extends Component{
                 backgroundColor: 'white',
                 border: '1px solid black transparent'
             }}>
-                <a href="http://localhost:3000/inapp">
+                <Link to="/inapp">
                     <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}}/>
-                </a>
+                </Link>
                 <ul className="nav navbar-nav navbar-right">
-                    <li><a href="http://localhost:3000" style={{paddingTop: '25px', color: 'black'}}><span
-                        class="glyphicon glyphicon-off"></span> Logout</a></li>
+                    <li><Link to="/" style={{paddingTop: '25px', color: 'black'}}><span
+                        class="glyphicon glyphicon-off"></span> Logout</Link></li>
                 </ul>
             </nav>
 
@@ -112,9 +164,9 @@ class UpdateProfile extends Component{
                     </div>
                     <div style={{
                         width: '500px',
-                        height: '600px',
-                        backgroundColor: '#090030',
-                        color: 'white',
+                        height: '625px',
+                        backgroundImage: "url(" + white + ")",
+                        color: 'black',
                         marginLeft: '250px',
                         marginTop: '50px',
                         border: '1px solid  ',
@@ -122,27 +174,55 @@ class UpdateProfile extends Component{
                         paddingLeft: '50px',
                         paddingTop: '50px'
                     }}>
-                        Name: <br/>
-                        <input style={{color: 'black', width: '250px'}} autoFocus /><br/> <br/>
-                        Email: <br/>
-                        <input style={{color: 'black', width: '250px'}}  /><br/> <br/>
-                        Phone number: <br/>
-                        <input style={{color: 'black', width: '250px'}}  /><br/> <br/>
-                        About Me: <br/>
-                        <textarea style={{color: 'black', width: '300px', height: '100px'}}  /><br/> <br/>
-                        Skills: <br/>
-                        <textarea style={{color: 'black', width: '300px', height: '100px'}}  /><br/> <br/>
+                        <div class="form-group">
+
+                            Email: <br/>
+                            {this.state.email}<br/> <br/>
+                            Skills: <br />
+                            <div class="form-group">
+
+                                <textarea
+                                    style={{width: '300px', height: '400px',color: 'black'}}
+                                    type="text"
+                                    placeholder="Update your skills"
+                                    name="skills"
+                                    onInput={(event)=>{
+                                        this.setState({
+                                            skills:event.target.value});
+                                    }}
+                                    required
+                                />
+
+                            </div>
+                            <button
+                                type="button"
+                                className="btn"
+                                onClick={() => this.handleUpdate(this.state)}
+                                style={{
+                                    height: '40px',
+                                    marginTop: '5px',
+                                    paddingTop: '10px',
+                                    backgroundColor: '#fc951e',
+                                    color: 'black'
 
 
-                        <Link to="/profile" className="btn" style={{
-                            height: '40px',
-                            marginTop: '5px',
-                            paddingTop: '10px',
-                            backgroundColor: '#fc951e',
-                            color: 'white'
+                                }}>Update Skills</button>
 
-                        }}> Save your Profile</Link>
+                            <Link
+                                to="/profile"
+                                type="button"
+                                className="btn"
+                                style={{
+                                    height: '40px',
+                                    marginTop: '5px',
+                                    marginLeft: '5px',
+                                    paddingTop: '10px',
+                                    backgroundColor: '#fc951e',
+                                    color: 'black'
 
+
+                                }}>Cancel</Link>
+                        </div>
                     </div>
 
 
@@ -155,4 +235,10 @@ class UpdateProfile extends Component{
     }
 }
 
-export default UpdateProfile;
+function mapStateToProps(state){
+    return{
+        user: state.loginUser
+    }
+}
+
+export default connect(mapStateToProps)(UpdateSkills);
