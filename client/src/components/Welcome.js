@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import freelancer from  '../images/download.png';
 import front from '../images/freelancer.jpg';
 import {Link} from 'react-router-dom';
+import * as API from "../api/API";
+
 class Welcome extends Component{
 
     render(){
+        API.doLogout()
         return(
             <div style={{marginTop: '10px',border: '0px solid transparent' , background: 'linear-gradient(to right,#4f41f4,#4170f4 )', position: 'fixed', bottom: '0', right: '0', left: '0', top: '0'}}>
 
