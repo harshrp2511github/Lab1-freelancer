@@ -11,6 +11,7 @@ export const doLogin = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
@@ -29,6 +30,7 @@ export const doSignUp = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
@@ -46,6 +48,7 @@ export const setProfile = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
@@ -63,6 +66,7 @@ export const getProfile = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
@@ -80,6 +84,7 @@ export const updateName = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
@@ -97,6 +102,7 @@ export const updatePhone = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
@@ -115,6 +121,7 @@ export const updateSkills = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
     }).then(res => res.json())
         .then(res =>{
@@ -133,7 +140,78 @@ export const updateAbout = (payload) =>
             ...headers,
             'Content-Type': 'application/json'
         },
+        credentials:'include',
         body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const postProject = (payload) =>
+    fetch(`${api}/users/postproject`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const getProjectList = () =>
+    fetch(`${api}/users/getprojectlist`, {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include'
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const doLogout = () =>
+    fetch(`${api}/users/logout`, {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include'
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const doCheckLogin = () =>
+    fetch(`${api}/users/checklogin`, {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include'
     }).then(res => res.json())
         .then(res =>{
             return res;

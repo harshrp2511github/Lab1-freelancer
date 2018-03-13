@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+//var multer = require('multer');
 var connection = require('./database/db');
 
 
@@ -23,6 +24,7 @@ router.post('/login', function(req, res, next) {
                  console.log(results);
                 if(results.length >0){
                     if(results[0].password == password){
+                        req.session.email = email;
                         res.json({
                             status: 'true',
                             message: 'login sucessfull'
@@ -62,7 +64,7 @@ router.post('/signup', function(req, res, next) {
         if (error) {
             res.json({
                 status: 'false',
-                message:'there are some error with query'
+                message:'Email already exists'
             })
         }else{
             res.json({
@@ -121,7 +123,8 @@ router.post('/getprofile', function(req, res, next) {
                     name: results[0].name,
                     phone: results[0].phone,
                     aboutme: results[0].aboutme,
-                    skills: results[0].skills
+                    skills: results[0].skills,
+                    profileimage: results[0].profileimage
 
                 })
             }
@@ -252,5 +255,101 @@ router.post('/updateabout', function(req, res, next) {
 
 
 });
+
+router.post('/uploadimage', function (req, res) {
+    upload(req, res, function (err) {
+        if (err) {
+            // An error occurred when uploading
+            return
+        }
+
+        // Everything went fine
+    })
+});
+
+
+router.post('/postproject', function(req, res, next) {
+
+    var projects={
+
+        "projectname":req.body.projectname,
+        "email":req.body.email,
+        "projectdesc":req.body.projectdesc,
+        "projectskills": req.body.projectskills,
+        "projectmin": req.body.projectmin,
+        "projectmax": req.body.projectmax,
+        "projectopen": req.body.projectopen
+    }
+
+
+    connection.query('INSERT INTO projects SET ?',projects, function (error, results, fields) {
+        if (error) {
+            res.json({
+                status: 'false',
+                message:'Project Name already Exists..'
+            })
+        }else{
+            res.json({
+                status: 'true',
+                data:results,
+                message:'Project successfully added '
+            })
+        }
+    });
+
+});
+
+router.get('/getprojectlist', function(req, res, next) {
+
+
+
+    connection.query('SELECT * FROM projects ', function (error, results, fields) {
+        if (error) {
+            // console.log("error ocurred",error);
+            res.json({
+                status: 'false',
+                message: 'Error occured'
+            })
+        } else {
+            res.json({
+                status: 'true',
+                results: results
+            });
+        }
+
+    })
+});
+
+router.get('/checklogin', function(req, res, next){
+    //req.session.email = null;
+    //req.session.destroy();
+    if(req.session.email){
+        res.json({
+            status: 'true'
+        });
+    }
+    else{
+        res.json({
+            status: 'false'
+        });
+    }
+});
+
+router.get('/logout', function(req, res, next){
+    req.session.email = null;
+    req.session.destroy();
+    if(req.session.email == null){
+        res.json({
+            status: 'true'
+        });
+    }
+    else{
+        res.json({
+            status: 'false'
+        });
+    }
+});
+
+
 
 module.exports = router;

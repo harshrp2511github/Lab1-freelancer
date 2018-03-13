@@ -4,13 +4,8 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
-var passport = require('passport');
-var expressValidator =  require('express-validator');
-var LocalStrategy = require('passport-local').Strategy;
+var session = require('client-sessions');
 var multer = require('multer');
-var upload =  multer({dest: './uploads'});
-var flash = require('flash');
 var cors = require('cors');
 
 
@@ -34,36 +29,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+//enable CORS
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 
 //Handle sessions
 app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
+    cookieName: 'session',
+    secret: 'harshpatel',
+    duration: 30*60*1000,
+    activeDuration: 5*60*1000
 }));
 
 //Passport
-app.use(passport.initialize());
-app.use(passport.session());
 
 //Validator
-app.use(expressValidator({
-    errorFormatter: function(param, msg, value){
-      var namespace =param.split('.')
-          ,root = namespace.shift()
-          ,formParam = root;
 
-      while(namespace.length) {
-          formParam + -'[' + namespace.shift() + ']';
-      }
-      return{
-          param: formParam,
-          msg: msg,
-          value: value
-      };
-    }
-}));
 
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
@@ -76,20 +62,20 @@ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

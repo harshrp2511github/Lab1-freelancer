@@ -35,13 +35,13 @@ class Signup extends Component{
 
                 if (res.status === 'true') {
                     this.setState({
-                        message: "Profile setup Successfully..!!",
+                        message: "Sign up Successful..!!",
                     });
 
                 } else if (res.status === 'false') {
                     this.setState({
 
-                        message: "Profile setup Failed"
+                        message: res.message
                     });
                 }
             });
@@ -51,13 +51,13 @@ class Signup extends Component{
 
                 if (res.status === 'true') {
                     this.setState({
-                        profile: "Signup Successfull..!!",
+                        profile: "Profile setup Successfull..!!",
                     });
 
                 } else if (res.status === 'false') {
                     this.setState({
 
-                        profile: "SignUp Failed"
+                        profile: "Profile setup Failed"
                     });
                 }
             });

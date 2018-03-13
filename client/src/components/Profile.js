@@ -14,18 +14,43 @@ class Profile extends Component{
         phone: '',
         about: '',
         skills: ''
+
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.setState({
             email: this.props.user.email,
             name: '',
             phone: '',
             about: '',
             skills: ''
+
         });
+        API.doCheckLogin()
+            .then((status) => {
+                console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+                    this.props.redirectURL('/profile');
+                }
+                else{
+                    this.props.redirectURL('/');
+                }
+            });
     }
 
+    handleSubmit = () => {
+        API.doLogout()
+            .then((status) => {
+                console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+                    this.props.redirectURL('/');
+                }
+            });
+
+
+    }
     setFields = (userdata) => {
         API.getProfile(userdata)
             .then((status) => {
@@ -36,7 +61,7 @@ class Profile extends Component{
                         name: status.name,
                         phone: status.phone,
                         about: status.aboutme,
-                        skills: status.skills
+                        skills: status.skills,
                     });
 
                 } else if (status.status == 'false') {
@@ -76,8 +101,8 @@ class Profile extends Component{
                     <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}}/>
                 </Link>
                 <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/" style={{paddingTop: '25px', color: 'black'}}><span
-                        class="glyphicon glyphicon-off"></span> Logout</Link></li>
+                    <li><button className="btn" onClick={() => this.handleSubmit()} style={{marginTop: '10px', height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span
+                        class="glyphicon glyphicon-off"></span> Logout</button></li>
                 </ul>
             </nav>
 
@@ -94,22 +119,31 @@ class Profile extends Component{
             }}>
 
                 <ul className="nav navbar-nav">
-                    <li><a type="btn" className="btn" style={{
+                    <li><Link to="/inapp" type="btn" className="btn" style={{
                         height: '40px',
                         marginTop: '5px',
                         paddingTop: '10px',
                         color: 'white',
                         backgroundColor: '#fc951e'
-                    }}> My Profile </a></li>
+                    }}> Home </Link></li>
+                    <li><Link to="/profile" type="btn" className="btn" style={{
+                        height: '40px',
+                        marginTop: '5px',
+                        paddingTop: '10px',
+                        marginLeft: '10px',
+                        color: 'white',
+                        backgroundColor: '#fc951e'
+                    }}> My Profile </Link></li>
+
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
-                    <li><a type="btn" className="btn" style={{
+                    <li><Link to="/postproject" type="btn" className="btn" style={{
                         height: '40px',
                         marginTop: '5px',
                         paddingTop: '10px',
                         color: 'white',
                         backgroundColor: '#fc951e'
-                    }}> Post a Project</a></li>
+                    }}> Post a Project</Link></li>
                 </ul>
             </nav>
 
@@ -151,7 +185,7 @@ class Profile extends Component{
                             position: 'absolute'
                         }}/>
 
-                        <Link to="/updateprofile" className="btn" style={{ paddingLeft: '150px', paddingTop: '190px', color: 'black',width: '30px', height: '30px'}} ><span
+                        <Link to="/updateimage" className="btn" style={{ paddingLeft: '150px', paddingTop: '190px', color: 'black',width: '30px', height: '30px'}} ><span
                             class="glyphicon glyphicon-camera"></span></Link>
 
                     </div>

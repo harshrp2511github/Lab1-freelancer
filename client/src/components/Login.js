@@ -31,6 +31,14 @@ class Login extends Component {
             isLoggedIn: 'false',
             message: ''
         });
+        API.doCheckLogin()
+            .then((status) => {
+                console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+                    this.props.redirectURL('/inapp');
+                }
+            });
     }
 
     handleSubmit = (userdata) => {

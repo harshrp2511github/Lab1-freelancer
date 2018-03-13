@@ -9,6 +9,8 @@ import UpdateName from './UpdateName';
 import UpdatePhone from './UpdatePhone';
 import UpdateAbout from './UpdateAbout';
 import UpdateSkills from './UpdateSkills';
+import UpdateImage from './UpdateImage';
+import PostProject from './PostProject'
 
 
 class StartPage extends Component{
@@ -45,13 +47,13 @@ class StartPage extends Component{
 
                 <Route exact path="/inapp" render={() => (
                     <div>
-                        <Inapp />
+                        <Inapp redirectURL={this.redirectURL} />
                     </div>
                 )}/>
 
                 <Route exact path="/profile" render={() => (
                     <div>
-                        <Profile />
+                        <Profile redirectURL={this.redirectURL} />
                     </div>
                 )}/>
 
@@ -76,6 +78,18 @@ class StartPage extends Component{
                 <Route exact path="/updateskills" render={() => (
                     <div>
                         <UpdateSkills redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/updateimage" render={() => (
+                    <div>
+                        <UpdateImage redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/postproject" render={() => (
+                    <div>
+                        <PostProject redirectURL={this.redirectURL} />
                     </div>
                 )}/>
 

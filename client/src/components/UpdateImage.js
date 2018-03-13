@@ -2,24 +2,19 @@ import React, { Component } from 'react';
 import freelancer from  '../images/download.png';
 import cover from '../images/cover.jpg';
 import profilebackground from '../images/profilebackground.jpg';
-import {Link} from 'react-router-dom'
-import unknown from '../images/unknown.png';
 import white from '../images/white.jpg'
-import {connect} from "react-redux";
+import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import unknown from '../images/unknown.png';
 import * as API from "../api/API";
-
-class UpdateName extends Component{
-
-    p_name = '';
-    p_phone='';
-    p_about='';
-    p_skills='';
+class UpdateImage extends Component{
     state={
         email: this.props.user.email,
         name: '',
         phone: '',
         about: '',
-        skills: ''
+        skills: '',
+        selectedFile: ''
     }
 
     componentDidMount(){
@@ -28,36 +23,45 @@ class UpdateName extends Component{
             name: '',
             phone: '',
             about: '',
-            skills: ''
+            skills: '',
+            selectedFile: 'null'
         });
+    }
+
+    fileSelectedHandler = event => {
+        this.setState({
+            selectedFile: event.target.files[0]
+        })
+    }
+
+    fileUploadHandler = () => {
+
     }
 
     setFields = (userdata) => {
         API.getProfile(userdata)
             .then((status) => {
-                console.log(JSON.stringify(status));
+                //console.log(JSON.stringify(status));
                 if (status.status == 'true') {
 
+                    this.setState({
+                        name: status.name,
+                        phone: status.phone,
+                        about: status.aboutme,
+                        skills: status.skills
+                    });
 
-                    this.p_name=status.name;
-                    this.p_phone=status.phone;
-                    this.p_about=status.about;
-                    this.p_skills=status.skills;
+                } else if (status.status == 'false') {
 
-
+                    this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
                 }
 
             });
     };
 
-    // handleChange=(e)=> {
-    //     this.setState({[e.target.name]: e.target.value});
-    // }
-
-    handleUpdate = (userinfo) => {
-        API.updateAbout(userinfo);
-        this.props.redirectURL("/profile");
-    };
 
     render(){
         this.setFields(this.state);
@@ -111,7 +115,7 @@ class UpdateName extends Component{
                     }}> My Profile </Link></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/postproject" type="btn" className="btn" style={{
+                    <li><Link to="/toproject" type="btn" className="btn" style={{
                         height: '40px',
                         marginTop: '5px',
                         paddingTop: '10px',
@@ -153,15 +157,15 @@ class UpdateName extends Component{
 
                         <img src={unknown} style={{
                             width: '170px',
-                            height: '200px',
+                            height: '180px',
                             marginTop: '12px',
                             marginLeft: '-1px',
                             border: '1px solid',
-                            //position: 'absolute'
                         }}/>
-
-
+                        <input type="file" name="Upload" onChange={this.fileSelectedHandler} style={{ marginTop: '5px', paddingLeft: '10px' }}/>
+                        <button onClick={this.fileUploadHandler}>Upload</button>
                     </div>
+
                     <div style={{
                         width: '500px',
                         height: '625px',
@@ -174,55 +178,40 @@ class UpdateName extends Component{
                         paddingLeft: '50px',
                         paddingTop: '50px'
                     }}>
-                        <div class="form-group">
-
-                            Email: <br/>
-                            {this.state.email}<br/> <br/>
-                            About Me: <br />
-                            <div class="form-group">
-
-                                <textarea
-                                    style={{width: '300px', height: '400px',color: 'black'}}
-                                    type="text"
-                                    placeholder="Update your description.."
-                                    name="about"
-                                    onInput={(event)=>{
-                                        this.setState({
-                                            about:event.target.value});
-                                    }}
-                                    required
-                                />
-
-                            </div>
-                            <button
-                                type="button"
-                                className="btn"
-                                onClick={() => this.handleUpdate(this.state)}
-                                style={{
-                                    height: '40px',
-                                    marginTop: '5px',
-                                    paddingTop: '10px',
-                                    backgroundColor: '#fc951e',
-                                    color: 'black'
-
-
-                                }}>Update Description</button>
-
-                            <Link
-                                to="/profile"
-                                type="button"
-                                className="btn"
-                                style={{
-                                    height: '40px',
-                                    marginTop: '5px',
-                                    marginLeft: '5px',
-                                    paddingTop: '10px',
-                                    backgroundColor: '#fc951e',
-                                    color: 'black'
+                        Email: <br/>
+                        {this.state.email}<br/> <br/>
+                        Name: <Link to="/updatename"
+                                    style={{
+                                        color: 'black',
+                                        marginLeft: '55px'
+                                    }}>
+                        <span class="glyphicon glyphicon-edit"></span></Link><br />
+                        {this.state.name}<br/> <br/>
+                        Phone: <Link to="/updatephone"
+                                     style={{
+                                         color: 'black',
+                                         marginLeft: '54px'
+                                     }}>
+                        <span class="glyphicon glyphicon-edit"></span></Link><br />
+                        {this.state.phone}<br/> <br/>
+                        About Me: <Link to="/updateabout"
+                                        style={{
+                                            color: 'black',
+                                            marginLeft: '35px'
+                                        }}>
+                        <span class="glyphicon glyphicon-edit"></span></Link><br />
+                        {this.state.about}<br/> <br/>
+                        Skills: <Link to="/updateskills"
+                                      style={{
+                                          color: 'black',
+                                          marginLeft: '62px'
+                                      }}>
+                        <span class="glyphicon glyphicon-edit"></span></Link><br />
+                        {this.state.skills}<br/> <br/>
 
 
-                                }}>Cancel</Link>
-                        </div>
+
+
                     </div>
 
 
@@ -241,4 +230,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(UpdateName);
+export default connect(mapStateToProps)(UpdateImage);

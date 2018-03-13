@@ -102,22 +102,22 @@ class UpdateName extends Component{
             }}>
 
                 <ul className="nav navbar-nav">
-                    <li><a type="btn" className="btn" style={{
+                    <li><Link to="/profile" type="btn" className="btn" style={{
                         height: '40px',
                         marginTop: '5px',
                         paddingTop: '10px',
                         color: 'white',
                         backgroundColor: '#fc951e'
-                    }}> My Profile </a></li>
+                    }}> My Profile </Link></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
-                    <li><a type="btn" className="btn" style={{
+                    <li><Link to="/postproject" type="btn" className="btn" style={{
                         height: '40px',
                         marginTop: '5px',
                         paddingTop: '10px',
                         color: 'white',
                         backgroundColor: '#fc951e'
-                    }}> Post a Project</a></li>
+                    }}> Post a Project</Link></li>
                 </ul>
             </nav>
 
@@ -153,12 +153,13 @@ class UpdateName extends Component{
 
                         <img src={unknown} style={{
                             width: '170px',
-                            height: '180px',
+                            height: '200px',
                             marginTop: '12px',
                             marginLeft: '-1px',
                             border: '1px solid',
+                           // position: 'absolute'
                         }}/>
-                        <input type="file" name="Upload" style={{ marginTop: '5px', paddingLeft: '10px' }}/>
+
 
 
                     </div>
