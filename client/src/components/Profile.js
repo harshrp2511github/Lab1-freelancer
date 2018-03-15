@@ -98,10 +98,10 @@ class Profile extends Component{
                 border: '1px solid black transparent'
             }}>
                 <Link to="/inapp">
-                    <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}}/>
+                    <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px', marginLeft: '50px'}}/>
                 </Link>
                 <ul className="nav navbar-nav navbar-right">
-                    <li><button className="btn" onClick={() => this.handleSubmit()} style={{marginTop: '10px', height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span
+                    <li><button className="btn" onClick={() => this.handleSubmit()} style={{marginTop: '10px', height: '40px',color: 'white', backgroundColor: '#fc951e', marginRight: '50px'}}><span
                         class="glyphicon glyphicon-off"></span> Logout</button></li>
                 </ul>
             </nav>
@@ -120,29 +120,16 @@ class Profile extends Component{
 
                 <ul className="nav navbar-nav">
                     <li><Link to="/inapp" type="btn" className="btn" style={{
-                        height: '40px',
-                        marginTop: '5px',
-                        paddingTop: '10px',
-                        color: 'white',
-                        backgroundColor: '#fc951e'
+                        height: '30px',marginRight:'10px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginLeft: '40px'
                     }}> Home </Link></li>
                     <li><Link to="/profile" type="btn" className="btn" style={{
-                        height: '40px',
-                        marginTop: '5px',
-                        paddingTop: '10px',
-                        marginLeft: '10px',
-                        color: 'white',
-                        backgroundColor: '#fc951e'
+                        height: '30px',marginRight:'10px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e'
                     }}> My Profile </Link></li>
 
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                     <li><Link to="/postproject" type="btn" className="btn" style={{
-                        height: '40px',
-                        marginTop: '5px',
-                        paddingTop: '10px',
-                        color: 'white',
-                        backgroundColor: '#fc951e'
+                        height: '30px',marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '25px'
                     }}> Post a Project</Link></li>
                 </ul>
             </nav>

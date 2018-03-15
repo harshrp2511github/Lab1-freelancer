@@ -5,3 +5,12 @@ export const loginUser = (userinfo) => {
                 payload: userinfo
         }
 };
+
+export const selectedProject = (projectinfo) => {
+    console.log(projectinfo);
+    return{
+        type: 'SELECTED_PROJECT',
+        payload: projectinfo
+    }
+};
+

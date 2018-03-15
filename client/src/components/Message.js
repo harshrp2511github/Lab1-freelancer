@@ -9,7 +9,7 @@ class Message extends Component {
 
     render() {
         return (
-            <div className="row justify-content-md-center">
+            <div className="row justify-content-md-center" style={{ color: 'red', fontSize: '20px'}}>
                 {this.props.message}
 
                 </div>

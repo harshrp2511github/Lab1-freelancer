@@ -278,7 +278,9 @@ router.post('/postproject', function(req, res, next) {
         "projectskills": req.body.projectskills,
         "projectmin": req.body.projectmin,
         "projectmax": req.body.projectmax,
-        "projectopen": req.body.projectopen
+        "projectopen": req.body.projectopen,
+        "projectbids": req.body.projectbids
+
     }
 
 
@@ -299,11 +301,64 @@ router.post('/postproject', function(req, res, next) {
 
 });
 
+router.post('/addbid', function(req, res, next) {
+
+    var bids={
+
+        "projectname":req.body.projectname,
+        "biddingparty":req.body.biddingparty,
+        "price":req.body.price,
+        "days": req.body.days
+
+    }
+
+
+    connection.query('INSERT INTO bids SET ?',bids, function (error, results, fields) {
+        if (error) {
+            res.json({
+                status: 'false',
+                message:'You have already made a bid on this project'
+            })
+        }else{
+            res.json({
+                status: 'true',
+                data:results,
+                message:'Bid successfully added '
+            })
+        }
+    });
+
+});
+
+
+
+
 router.get('/getprojectlist', function(req, res, next) {
 
 
 
     connection.query('SELECT * FROM projects ', function (error, results, fields) {
+        if (error) {
+            // console.log("error ocurred",error);
+            res.json({
+                status: 'false',
+                message: 'Error occured'
+            })
+        } else {
+            res.json({
+                status: 'true',
+                results: results
+            });
+        }
+
+    })
+});
+
+router.post('/getbids', function(req, res, next) {
+
+    var projectname = req.body.projectname;
+
+    connection.query('SELECT * FROM bids WHERE projectname = ? ', projectname, function (error, results, fields) {
         if (error) {
             // console.log("error ocurred",error);
             res.json({
@@ -350,6 +405,43 @@ router.get('/logout', function(req, res, next){
     }
 });
 
+router.post('/updatebidcount', function(req, res, next){
+    var projectname = req.body.projectname;
+    connection.query('UPDATE projects SET projectbids = projectbids+1 WHERE projectname = ? ',projectname , function (error, results, fields) {
+        if (error) {
+            // console.log("error ocurred",error);
+            res.json({
+                status: 'false',
+                message: 'Error occured'
+            })
+        } else {
+            res.json({
+                status: 'true',
+                message: 'Bid count updated'
+            });
+        }
+
+    })
+});
+
+router.post('/updateavg', function(req, res, next){
+    var projectname = req.body.projectname;
+    connection.query('UPDATE projects SET projectavg = (SELECT AVG(price) FROM bids where projectname = ? ) where projectname = ? ',[projectname, projectname],function (error, results, fields) {
+        if (error) {
+            // console.log("error ocurred",error);
+            res.json({
+                status: 'false',
+                message: 'Error occured'
+            })
+        } else {
+            res.json({
+                status: 'true',
+                message: 'Bid avg updated'
+            });
+        }
+
+    })
+});
 
 
 module.exports = router;

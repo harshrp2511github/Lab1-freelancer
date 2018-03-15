@@ -10,7 +10,9 @@ import UpdatePhone from './UpdatePhone';
 import UpdateAbout from './UpdateAbout';
 import UpdateSkills from './UpdateSkills';
 import UpdateImage from './UpdateImage';
-import PostProject from './PostProject'
+import PostProject from './PostProject';
+import ActivateProject from './ActivateProject';
+import PlaceBid from './PlaceBid'
 
 
 class StartPage extends Component{
@@ -90,6 +92,18 @@ class StartPage extends Component{
                 <Route exact path="/postproject" render={() => (
                     <div>
                         <PostProject redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/activeproject" render={() => (
+                    <div>
+                        <ActivateProject redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/placebid" render={() => (
+                    <div>
+                        <PlaceBid redirectURL={this.redirectURL} />
                     </div>
                 )}/>
 

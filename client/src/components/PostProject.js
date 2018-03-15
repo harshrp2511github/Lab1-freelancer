@@ -15,6 +15,8 @@ class PostProject extends Component{
         projectmin: '',
         projectmax: '',
         projectopen: 'yes',
+        projectbids: 0,
+        projectavgbid: 0,
         message: ''
     }
 
@@ -27,6 +29,8 @@ class PostProject extends Component{
             projectmin: '',
             projectmax: '',
             projectopen: 'yes',
+            projectbids: 0,
+            projectavgbid: 0,
             message: ''
         });
     }

@@ -21,6 +21,12 @@ class Inapp extends Component{
             });
     }
 
+    redirect = (url) => {
+
+        this.props.redirectURL(url);
+
+    }
+
     handleSubmit = () => {
         API.doLogout()
             .then((status) => {
@@ -38,29 +44,30 @@ class Inapp extends Component{
         return(
             <div style={{border: '0px solid transparent', margin: '0px',position: 'fixed', bottom: '0', right: '0', left: '0', top: '0',overflowY: 'scroll', overflowX: 'hidden'}}>
 
-                <nav className="navbar navbar-default" style={{paddingLeft:'20px',  paddingRight: '25px',marginTop: '10px', marginBottom:'0px',backgroundColor: 'white', border: '1px solid black transparent'}}>
+                <nav className="navbar navbar-default" style={{paddingLeft:'20px',  paddingRight: '25px', marginBottom:'0px',backgroundColor: 'white', border: '1px solid black transparent'}}>
+
                     <Link to="/inapp">
-                        <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px'}} />
+                        <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px', marginLeft: '50px'}} />
                     </Link>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><button type="button" className="btn" onClick={() => this.handleSubmit()} style={{marginTop: '10px', height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span class="glyphicon glyphicon-off" ></span> Logout</button></li>
+                        <li><button type="button" className="btn" onClick={() => this.handleSubmit()} style={{marginTop: '10px', marginRight: '50px',height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span class="glyphicon glyphicon-off" ></span> Logout</button></li>
                     </ul>
                 </nav>
 
-                <nav className="navbar navbar-default" style={{ paddingLeft: '50px',paddingRight: '50px',backgroundColor: '#090030',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
+                <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#090030',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
 
                     <ul className="nav navbar-nav ">
-                        <li><Link to="" style={{color: 'white'}}><span class="glyphicon glyphicon-folder-open"></span>  My Projects </Link></li>
-                        <li><Link to="" style={{color: 'white'}}><span class="glyphicon glyphicon-list" ></span> Dashboard</Link></li>
+                        <li><Link to="" style={{color: 'white', marginLeft: '80px'}}>  My Projects </Link></li>
+                        <li><Link to="" style={{color: 'white',paddingLeft: '25px'}}> Dashboard</Link></li>
                     </ul>
 
                     <ul className="nav navbar-nav navbar-right">
-                        <li> <Link to="/profile"  className="btn" style={{height: '40px',marginRight:'10px' ,marginTop: '5px', paddingTop: '10px',color: 'white', backgroundColor: '#fc951e'}}>My Profile</Link></li>
-                        <li><Link to="/postproject"  className="btn" style={{height: '40px', marginTop: '5px', paddingTop: '10px', color: 'white', backgroundColor: '#fc951e'}}> Post a Project</Link></li>
+                        <li> <Link to="/profile"  className="btn" style={{height: '30px',marginRight:'10px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e'}}>My Profile</Link></li>
+                        <li><Link to="/postproject"  className="btn" style={{height: '30px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '25px'}}> Post a Project</Link></li>
                     </ul>
                 </nav>
 
-                <ProjectList />
+                <ProjectList redirect={this.redirect} />
 
             </div>
         );
