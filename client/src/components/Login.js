@@ -17,6 +17,7 @@ class Login extends Component {
     state = {
         email: '',
         password: '',
+        username: '',
         isLoggedIn: 'false',
         message: ''
 
@@ -28,6 +29,7 @@ class Login extends Component {
         this.setState({
             email: '',
             password: '',
+            username: '',
             isLoggedIn: 'false',
             message: ''
         });
@@ -42,6 +44,10 @@ class Login extends Component {
     }
 
     handleSubmit = (userdata) => {
+        API.getUserName(userdata.payload)
+            .then((status) => {
+                userdata.payload.username=status.username
+            });
         API.doLogin(userdata.payload)
             .then((status) => {
                 console.log(JSON.stringify(status));

@@ -9,6 +9,7 @@ class PostProject extends Component{
 
     state={
         email: this.props.user.email,
+        name: this.props.user.username,
         projectname: '',
         projectdesc: '',
         projectskills: '',
@@ -23,6 +24,7 @@ class PostProject extends Component{
     componentDidMount(){
         this.setState({
             email: this.props.user.email,
+            name: this.props.user.username,
             projectname: '',
             projectdesc: '',
             projectskills: '',

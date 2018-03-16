@@ -57,8 +57,8 @@ class Inapp extends Component{
                 <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#090030',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
 
                     <ul className="nav navbar-nav ">
-                        <li><Link to="" style={{color: 'white', marginLeft: '80px'}}>  My Projects </Link></li>
-                        <li><Link to="" style={{color: 'white',paddingLeft: '25px'}}> Dashboard</Link></li>
+                        <li><Link to="/postedprojects" style={{color: 'white', marginLeft: '80px'}}>  My Projects(Posted) </Link></li>
+                        <li><Link to="/biddedprojects" style={{color: 'white',paddingLeft: '25px'}}> My Projects(Bidded)</Link></li>
                     </ul>
 
                     <ul className="nav navbar-nav navbar-right">

@@ -12,7 +12,11 @@ import UpdateSkills from './UpdateSkills';
 import UpdateImage from './UpdateImage';
 import PostProject from './PostProject';
 import ActivateProject from './ActivateProject';
-import PlaceBid from './PlaceBid'
+import PlaceBid from './PlaceBid';
+import PostedProjects from './PostedProjects'
+import BiddedProjects from './BiddedProjects'
+import MyActiveProject from './MyActiveProject'
+import MyActiveBiddedProject from './MyActiveBiddedProject'
 
 
 class StartPage extends Component{
@@ -104,6 +108,30 @@ class StartPage extends Component{
                 <Route exact path="/placebid" render={() => (
                     <div>
                         <PlaceBid redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/postedprojects" render={() => (
+                    <div>
+                        <PostedProjects redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/biddedprojects" render={() => (
+                    <div>
+                        <BiddedProjects redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/myactiveproject" render={() => (
+                    <div>
+                        <MyActiveProject redirectURL={this.redirectURL} />
+                    </div>
+                )}/>
+
+                <Route exact path="/myactivebiddedproject" render={() => (
+                    <div>
+                        <MyActiveBiddedProject redirectURL={this.redirectURL} />
                     </div>
                 )}/>
 

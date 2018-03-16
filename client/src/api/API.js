@@ -41,6 +41,24 @@ export const doSignUp = (payload) =>
             return error;
         });
 
+export const getUserName = (payload) =>
+    fetch(`${api}/users/getusername`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
 export const setProfile = (payload) =>
     fetch(`${api}/users/setprofile`, {
         method: 'POST',
@@ -241,6 +259,79 @@ export const getBids = (payload) =>
             return error;
         });
 
+export const getMyProjectList = (payload) =>
+    fetch(`${api}/users/getmyprojectlist`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const getMyBiddedProjectList = (payload) =>
+    fetch(`${api}/users/getmybiddedprojectlist`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const closeProject = (payload) =>
+    fetch(`${api}/users/closeproject`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const doHire = (payload) =>
+    fetch(`${api}/users/dohire`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .then(res =>{
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
 
 export const getProjectList = () =>
     fetch(`${api}/users/getprojectlist`, {
@@ -258,6 +349,8 @@ export const getProjectList = () =>
             console.log("This is error");
             return error;
         });
+
+
 
 export const doLogout = () =>
     fetch(`${api}/users/logout`, {

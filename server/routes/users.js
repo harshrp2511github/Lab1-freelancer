@@ -136,7 +136,37 @@ router.post('/getprofile', function(req, res, next) {
             }
         }
     });
+    });
 
+
+router.post('/getusername', function(req, res, next) {
+
+    var email= req.body.email;
+
+    connection.query('SELECT * FROM users WHERE email = ?',[email], function (error, results, fields) {
+        if (error) {
+            // console.log("error ocurred",error);
+            res.json({
+                status: 'false',
+                message: 'Error occured'
+            })
+        }else{
+            console.log(results);
+            if(results.length >0){
+                res.json({
+                    status: 'true',
+                    username: results[0].username
+
+                })
+            }
+            else{
+                res.json({
+                    status: 'false',
+                    message: 'User not available'
+                });
+            }
+        }
+    });
 });
 
 router.post('/updatename', function(req, res, next) {
@@ -274,6 +304,7 @@ router.post('/postproject', function(req, res, next) {
 
         "projectname":req.body.projectname,
         "email":req.body.email,
+        "name": req.body.name,
         "projectdesc":req.body.projectdesc,
         "projectskills": req.body.projectskills,
         "projectmin": req.body.projectmin,
@@ -301,12 +332,61 @@ router.post('/postproject', function(req, res, next) {
 
 });
 
+
+router.post('/dohire', function(req, res, next) {
+
+     var projectname = req.body.projectname;
+    var winnername = req.body.name;
+
+
+
+    connection.query('UPDATE projects SET winnername = ? WHERE projectname = ? ', [winnername,projectname], function (error, results, fields) {
+        if (error) {
+            res.json({
+                status: 'false',
+                message:'Error'
+            })
+        }else{
+            res.json({
+                status: 'true',
+                message:'Successful '
+            })
+        }
+    });
+
+});
+
+router.post('/closeproject', function(req, res, next) {
+
+    var projectname = req.body.projectname;
+
+
+
+
+    connection.query('UPDATE projects SET projectopen = "no" WHERE projectname = ? ', projectname, function (error, results, fields) {
+        if (error) {
+            res.json({
+                status: 'false',
+                message:'Error'
+            })
+        }else{
+            res.json({
+                status: 'true',
+                message:'Successful '
+            })
+        }
+    });
+
+});
+
+
 router.post('/addbid', function(req, res, next) {
 
     var bids={
 
         "projectname":req.body.projectname,
         "biddingparty":req.body.biddingparty,
+        "name": req.body.name,
         "price":req.body.price,
         "days": req.body.days
 
@@ -353,6 +433,51 @@ router.get('/getprojectlist', function(req, res, next) {
 
     })
 });
+
+router.post('/getmyprojectlist', function(req, res, next) {
+
+        var email = req.body.email;
+
+    connection.query('SELECT * FROM projects WHERE email = ? ',email ,function (error, results, fields) {
+        if (error) {
+            // console.log("error ocurred",error);
+            res.json({
+                status: 'false',
+                message: 'Error occured'
+            })
+        } else {
+            res.json({
+                status: 'true',
+                results: results
+            });
+        }
+
+    })
+});
+
+router.post('/getmybiddedprojectlist', function(req, res, next) {
+
+    var email = req.body.email;
+
+    connection.query('SELECT * FROM bids INNER JOIN projects ON bids.projectname = projects.projectname WHERE bids.biddingparty = ? ',email ,function (error, results, fields) {
+        if (error) {
+            // console.log("error ocurred",error);
+            res.json({
+                status: 'false',
+                message: 'Error occured'
+            })
+        } else {
+            res.json({
+                status: 'true',
+                results: results
+
+            });
+        }
+
+    })
+});
+
+
 
 router.post('/getbids', function(req, res, next) {
 

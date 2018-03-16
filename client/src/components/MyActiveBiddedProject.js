@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import freelancer from  '../images/download.png';
 import * as API from "../api/API";
 
-class ActivateProject extends Component{
+class MyActiveBiddedProject extends Component{
 
     state={
         projectname: this.props.project.projectname,
@@ -56,6 +56,25 @@ class ActivateProject extends Component{
 
     }
 
+    // handleHire = (userdata) => {
+    //     API.closeProject(userdata)
+    //         .then((status) => {
+    //             console.log(JSON.stringify(status));
+    //
+    //         });
+    //
+    //     API.doHire(userdata)
+    //         .then((status) => {
+    //             console.log(JSON.stringify(status));
+    //             if (status.status == 'true') {
+    //
+    //                 this.props.redirectURL('/postedprojects');
+    //             }
+    //         });
+    //
+    //
+    // }
+
     renderProjects(){
         return this.state.bids.map((bid) => {
 
@@ -65,7 +84,7 @@ class ActivateProject extends Component{
                     border: '1px solid',
                     marginTop: '2px',
                     marginBottom: '2px',
-                    height: '150px',
+                    height: '200px',
                     color: 'black',
                     backgroundColor: 'white',
                     textAlign: 'left'}}>
@@ -73,6 +92,7 @@ class ActivateProject extends Component{
                     <h4>Bidding Party: {bid.name}</h4>
                     <h4>Bid Price: {bid.price}</h4>
                     <h4>Days: {bid.days}</h4>
+
                 </div>
             );
         })
@@ -90,31 +110,7 @@ class ActivateProject extends Component{
                     top: '0',
                     overflowY: 'scroll'
                 }}>
-                    <nav className="navbar navbar-default" style={{
-                        paddingLeft: '20px',
-                        paddingRight: '25px',
-                        marginBottom: '0px',
-                        backgroundColor: 'white',
-                        border: '1px solid black transparent'
-                    }}>
 
-                        <Link to="/inapp">
-                            <img className="nav navbar-nav navbar-left" src={freelancer}
-                                 style={{width: '250px', marginLeft: '50px'}}/>
-                        </Link>
-                        <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <button type="button" className="btn" onClick={() => this.handleSubmit()} style={{
-                                    marginTop: '10px',
-                                    marginRight: '50px',
-                                    height: '40px',
-                                    color: 'white',
-                                    backgroundColor: '#fc951e'
-                                }}><span class="glyphicon glyphicon-off"></span> Logout
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
 
                     <div className="container">
                         <h1 style={{
@@ -173,50 +169,12 @@ class ActivateProject extends Component{
                                 }}>${this.props.project.projectmin} - ${this.props.project.projectmax}</h2>
                             </div>
 
-                            <div>
-                                <h2 style={{marginLeft: '750px', marginTop: '30px', color: '#329610'}}>OPEN!!</h2>
-                            </div>
+
 
                         </div>
 
-                        <div className="form-control" style={{
-                            marginTop: '180px',
-                            marginLeft: '50px',
-                            height: '650px',
-                            width: '1000px',
-                            boxShadow: '10px #a8a6a6',
-                            position: 'absolute'
-                        }}>
-                            <div style={{textAlign: 'left', paddingLeft: '50px', marginTop: '30px'}}>
-                                <h4 style={{fontWeight: 'bold', color: 'black'}}>Project Description:</h4>
-                                <textarea value={this.props.project.projectdesc}
-                                          style={{color: 'black', width: '500px', height: '200px'}}/>
-                            </div>
 
-                            <div style={{textAlign: 'left', paddingLeft: '50px', marginTop: '80px'}}>
-                                <h4 style={{fontWeight: 'bold', color: 'black'}}>About the Employer(Posted By and
-                                    Contact on):</h4>
-                                <h5 style={{color: 'black'}}>Name: {this.props.project.name}</h5>
-                                <h5 style={{color: 'black'}}>Email: {this.props.project.email}</h5>
-                            </div>
-
-                            <div style={{textAlign: 'left', paddingLeft: '50px', marginTop: '80px'}}>
-                                <h4 style={{fontWeight: 'bold', color: 'black'}}>Skills Required:</h4>
-                                <h5 style={{color: 'black'}}>{this.props.project.projectskills}</h5>
-                            </div>
-
-                            <Link to="/placebid" className="btn"
-                                  style={{backgroundColor: '#3b80ef', marginTop: '50px', color: 'white'}}>PLACE
-                                BID</Link>
-                            <Link to="/inapp" className="btn" style={{
-                                backgroundColor: '#3b80ef',
-                                marginTop: '50px',
-                                color: 'white',
-                                marginLeft: '10px'
-                            }}>BACK TO PROJECTS LIST</Link>
-                        </div>
-
-                        <div style={{marginTop: '880px', marginBottom: '100px', marginLeft: '-38px'}}>
+                        <div style={{marginTop: '200px', marginBottom: '100px', marginLeft: '-38px'}}>
                             <div className="container btn" style={{
                                 border: '1px solid #3b80ef',
                                 color: 'white',
@@ -231,12 +189,14 @@ class ActivateProject extends Component{
                             {this.renderProjects()}
                         </div>
 
+                        <Link to="/biddedprojects" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white', marginBottom: '100px'}}>BACK TO MY PROJECTS</Link>
+
                     </div>
 
                 </div>
             );
-         }
-         else{
+        }
+        else{
             return (
                 <div style={{
                     background: '#dbdbdb',
@@ -330,49 +290,12 @@ class ActivateProject extends Component{
                                 }}>${this.props.project.projectmin} - ${this.props.project.projectmax}</h2>
                             </div>
 
-                            <div>
-                                <h2 style={{marginLeft: '750px', marginTop: '30px', color: '#329610'}}>OPEN!!</h2>
-                            </div>
+                            <Link to="/biddedprojects" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white', marginBottom: '100px'}}>BACK TO MY PROJECTS</Link>
+
 
                         </div>
 
-                        <div className="form-control" style={{
-                            marginTop: '180px',
-                            marginLeft: '50px',
-                            height: '650px',
-                            width: '1000px',
-                            boxShadow: '10px #a8a6a6',
-                            marginBottom: '100px',
-                            position: 'absolute'
-                        }}>
-                            <div style={{textAlign: 'left', paddingLeft: '50px', marginTop: '30px'}}>
-                                <h4 style={{fontWeight: 'bold', color: 'black'}}>Project Description:</h4>
-                                <textarea value={this.props.project.projectdesc}
-                                          style={{color: 'black', width: '500px', height: '200px'}}/>
-                            </div>
 
-                            <div style={{textAlign: 'left', paddingLeft: '50px', marginTop: '80px'}}>
-                                <h4 style={{fontWeight: 'bold', color: 'black'}}>About the Employer(Posted By and
-                                    Contact on):</h4>
-                                <h5 style={{color: 'black'}}>Name: {this.props.project.name}</h5>
-                                <h5 style={{color: 'black'}}>Email: {this.props.project.email}</h5>
-                            </div>
-
-                            <div style={{textAlign: 'left', paddingLeft: '50px', marginTop: '80px'}}>
-                                <h4 style={{fontWeight: 'bold', color: 'black'}}>Skills Required:</h4>
-                                <h5 style={{color: 'black'}}>{this.props.project.projectskills}</h5>
-                            </div>
-
-                            <Link to="/placebid" className="btn"
-                                  style={{backgroundColor: '#3b80ef', marginTop: '50px', color: 'white'}}>PLACE
-                                BID</Link>
-                            <Link to="/inapp" className="btn" style={{
-                                backgroundColor: '#3b80ef',
-                                marginTop: '50px',
-                                color: 'white',
-                                marginLeft: '10px'
-                            }}>BACK TO PROJECTS LIST</Link>
-                        </div>
 
 
 
@@ -392,4 +315,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(ActivateProject);
+export default connect(mapStateToProps)(MyActiveBiddedProject);
