@@ -95,7 +95,7 @@ export const getProfile = (payload) =>
             return error;
         });
 
-export const updateName = (payload) =>
+export const changeName = (payload) =>
     fetch(`${api}/users/updatename`, {
         method: 'POST',
         headers: {

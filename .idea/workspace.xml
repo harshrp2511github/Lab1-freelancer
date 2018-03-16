@@ -3,14 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="5c8d4c34-ce0c-4322-be07-9d9261fad3f2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ActivateProject.js" afterPath="$PROJECT_DIR$/client/src/components/ActivateProject.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/API.js" afterPath="$PROJECT_DIR$/client/src/api/API.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/BiddedProjects.js" afterPath="$PROJECT_DIR$/client/src/components/BiddedProjects.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Inapp.js" afterPath="$PROJECT_DIR$/client/src/components/Inapp.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MyActiveBiddedProject.js" afterPath="$PROJECT_DIR$/client/src/components/MyActiveBiddedProject.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MyActiveProject.js" afterPath="$PROJECT_DIR$/client/src/components/MyActiveProject.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/PlaceBid.js" afterPath="$PROJECT_DIR$/client/src/components/PlaceBid.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/PostedProjects.js" afterPath="$PROJECT_DIR$/client/src/components/PostedProjects.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ProjectList.js" afterPath="$PROJECT_DIR$/client/src/components/ProjectList.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Profile.js" afterPath="$PROJECT_DIR$/client/src/components/Profile.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UpdateAbout.js" afterPath="$PROJECT_DIR$/client/src/components/UpdateAbout.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UpdateName.js" afterPath="$PROJECT_DIR$/client/src/components/UpdateName.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UpdatePhone.js" afterPath="$PROJECT_DIR$/client/src/components/UpdatePhone.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UpdateSkills.js" afterPath="$PROJECT_DIR$/client/src/components/UpdateSkills.js" />
+      <change beforePath="$PROJECT_DIR$/server/routes/database/db.js" afterPath="$PROJECT_DIR$/server/routes/database/db.js" />
       <change beforePath="$PROJECT_DIR$/server/routes/users.js" afterPath="$PROJECT_DIR$/server/routes/users.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,60 +25,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="PostedProjects.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/PostedProjects.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyActiveBiddedProject.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/MyActiveBiddedProject.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="33" column="66" lean-forward="false" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/routes/database/db.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/users.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9261">
-              <caret line="441" column="20" lean-forward="true" selection-start-line="441" selection-start-column="20" selection-end-line="441" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/StartPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2373">
-              <caret line="131" column="57" lean-forward="false" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="57" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -93,6 +41,12 @@
       <find>getProject</find>
       <find>getmy</find>
       <find>hire</find>
+      <find>connection.query</find>
+      <find>updateski</find>
+      <find>updates</find>
+      <find>view</find>
+      <find>updatena</find>
+      <find>updatename</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,14 +65,9 @@
         <option value="$PROJECT_DIR$/client/src/index.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/reducer-login.js" />
         <option value="$PROJECT_DIR$/client/src/components/UpdateProfile.js" />
-        <option value="$PROJECT_DIR$/client/src/components/UpdateAbout.js" />
         <option value="$PROJECT_DIR$/client/src/components/UpdateImage.js" />
-        <option value="$PROJECT_DIR$/client/src/components/UpdateName.js" />
-        <option value="$PROJECT_DIR$/client/src/components/UpdatePhone.js" />
-        <option value="$PROJECT_DIR$/client/src/components/UpdateSkills.js" />
         <option value="$PROJECT_DIR$/client/src/components/Signup.js" />
         <option value="$PROJECT_DIR$/server/app.js" />
-        <option value="$PROJECT_DIR$/client/src/components/Profile.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/reducer-project.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/client/src/actions/index.js" />
@@ -128,18 +77,24 @@
         <option value="$PROJECT_DIR$/client/src/components/Message.js" />
         <option value="$PROJECT_DIR$/client/src/components/BiddedProject.js" />
         <option value="$PROJECT_DIR$/client/src/components/PostedProject.js" />
-        <option value="$PROJECT_DIR$/client/src/api/API.js" />
         <option value="$PROJECT_DIR$/client/src/components/StartPage.js" />
         <option value="$PROJECT_DIR$/client/src/components/ProjectList.js" />
         <option value="$PROJECT_DIR$/client/src/components/Inapp.js" />
         <option value="$PROJECT_DIR$/client/src/components/ActivateProject.js" />
         <option value="$PROJECT_DIR$/client/src/components/PlaceBid.js" />
-        <option value="$PROJECT_DIR$/client/src/components/PostedProjects.js" />
         <option value="$PROJECT_DIR$/client/src/components/MyActiveProject.js" />
-        <option value="$PROJECT_DIR$/client/src/components/BiddedProjects.js" />
         <option value="$PROJECT_DIR$/client/src/components/MyActiveBiddedProject.js" />
-        <option value="$PROJECT_DIR$/server/routes/users.js" />
+        <option value="$PROJECT_DIR$/client/src/components/PostedProjects.js" />
+        <option value="$PROJECT_DIR$/client/src/components/BiddedProjects.js" />
+        <option value="$PROJECT_DIR$/client/src/api/API.js" />
+        <option value="$PROJECT_DIR$/server/routes/database/connect.js" />
         <option value="$PROJECT_DIR$/server/routes/database/db.js" />
+        <option value="$PROJECT_DIR$/server/routes/users.js" />
+        <option value="$PROJECT_DIR$/client/src/components/Profile.js" />
+        <option value="$PROJECT_DIR$/client/src/components/UpdateSkills.js" />
+        <option value="$PROJECT_DIR$/client/src/components/UpdateAbout.js" />
+        <option value="$PROJECT_DIR$/client/src/components/UpdatePhone.js" />
+        <option value="$PROJECT_DIR$/client/src/components/UpdateName.js" />
       </list>
     </option>
   </component>
@@ -182,6 +137,31 @@
             <path>
               <item name="Lab1-freelancer-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="Lab1-freelancer-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lab1-freelancer-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lab1-freelancer-master" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lab1-freelancer-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lab1-freelancer-master" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lab1-freelancer-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lab1-freelancer-master" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lab1-freelancer-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lab1-freelancer-master" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Lab1-freelancer-master" type="b2602c69:ProjectViewProjectNode" />
@@ -287,16 +267,17 @@
       <workItem from="1521158935367" duration="4620000" />
       <workItem from="1521165739720" duration="3317000" />
       <workItem from="1521170466113" duration="232000" />
-      <workItem from="1521173862666" duration="1166000" />
+      <workItem from="1521173862666" duration="17021000" />
+      <workItem from="1521194599191" duration="1713000" />
+      <workItem from="1521230448677" duration="3787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258448000" />
+    <option name="totallyTimeSpent" value="279803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18032786" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -305,7 +286,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24629419" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24629419" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -330,13 +311,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/StartPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -479,31 +453,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/UpdateName.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/UpdatePhone.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/UpdateImage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/UpdateSkills.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="209" column="0" lean-forward="false" selection-start-line="196" selection-start-column="28" selection-end-line="209" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -556,38 +509,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1757">
-          <caret line="53" column="46" lean-forward="false" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="64" column="23" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="64" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/UpdateAbout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="219" column="61" lean-forward="false" selection-start-line="219" selection-start-column="54" selection-end-line="219" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/api/API.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="280" column="46" lean-forward="false" selection-start-line="280" selection-start-column="46" selection-end-line="280" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -605,20 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/ProjectList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1827">
-          <caret line="105" column="166" lean-forward="false" selection-start-line="105" selection-start-column="159" selection-end-line="105" selection-end-column="166" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Inapp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/ActivateProject.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5043">
@@ -626,59 +537,134 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/MyActiveBiddedProject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="33" column="66" lean-forward="false" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/ProjectList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="105" column="166" lean-forward="false" selection-start-line="105" selection-start-column="159" selection-end-line="105" selection-end-column="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Inapp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="46" selection-start-column="16" selection-end-line="70" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/MyActiveProject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="-1491">
           <caret line="34" column="60" lean-forward="false" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/BiddedProjects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/StartPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2373">
-          <caret line="131" column="57" lean-forward="false" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/PostedProjects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="49" />
+        <state relative-caret-position="-443">
+          <caret line="116" column="36" lean-forward="false" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/BiddedProjects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="116" column="33" lean-forward="false" selection-start-line="116" selection-start-column="33" selection-end-line="116" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="37" column="52" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="37" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/MyActiveBiddedProject.js">
+    <entry file="file://$PROJECT_DIR$/client/src/api/API.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="33" column="66" lean-forward="false" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+        <state relative-caret-position="2037">
+          <caret line="97" column="19" lean-forward="false" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/database/connect.js" />
+    <entry file="file://$PROJECT_DIR$/server/routes/database/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9261">
-          <caret line="441" column="20" lean-forward="true" selection-start-line="441" selection-start-column="20" selection-end-line="441" selection-end-column="20" />
+        <state relative-caret-position="561">
+          <caret line="311" column="31" lean-forward="true" selection-start-line="311" selection-start-column="31" selection-end-line="311" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/database/db.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/StartPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="41" />
+        <state relative-caret-position="1275">
+          <caret line="131" column="57" lean-forward="false" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="57" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/UpdateName.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="81" column="11" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/UpdateSkills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="125" column="20" lean-forward="false" selection-start-line="125" selection-start-column="20" selection-end-line="129" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/UpdateAbout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-294">
+          <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/UpdatePhone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="161" column="91" lean-forward="false" selection-start-line="161" selection-start-column="91" selection-end-line="161" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -113,7 +113,7 @@ class PostedProject extends Component{
                                     marginTop: '10px',
                                     backgroundColor: '#05911d',
                                     color: 'white'
-                                }}>VIEW PROJECT!!
+                                }}>VIEW BIDS!!
                         </button>
                     </div>
                 )
