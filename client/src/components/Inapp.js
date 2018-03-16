@@ -42,7 +42,7 @@ class Inapp extends Component{
 
     render(){
         return(
-            <div style={{border: '0px solid transparent', margin: '0px',position: 'fixed', bottom: '0', right: '0', left: '0', top: '0',overflowY: 'scroll', overflowX: 'hidden'}}>
+            <div style={{border: '0px solid transparent', margin: '0px',position: 'fixed', bottom: '0', right: '0', left: '0', backgroundColor: '#dbdbdb',top: '0',overflowY: 'scroll', overflowX: 'hidden'}}>
 
                 <nav className="navbar navbar-default" style={{paddingLeft:'20px',  paddingRight: '25px', marginBottom:'0px',backgroundColor: 'white', border: '1px solid black transparent'}}>
 
@@ -54,16 +54,18 @@ class Inapp extends Component{
                     </ul>
                 </nav>
 
-                <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#090030',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
+                <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#073c59',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
 
                     <ul className="nav navbar-nav ">
-                        <li><Link to="/postedprojects" style={{color: 'white', marginLeft: '80px'}}>  My Projects(Posted) </Link></li>
-                        <li><Link to="/biddedprojects" style={{color: 'white',paddingLeft: '25px'}}> My Projects(Bidded)</Link></li>
+                        <li><Link to="/inapp" style={{color: 'white', marginLeft: '75px'}}>  Home </Link></li>
+                        <li><Link to="/profile" style={{color: 'white',paddingLeft: '25px'}}> My Profile</Link></li>
+                        <li><Link to="/postedprojects" style={{color: 'white',paddingLeft: '25px'}}> Posted Projects</Link></li>
+                        <li><Link to="/biddedprojects" style={{color: 'white',paddingLeft: '25px'}}> Bidded Projects</Link></li>
                     </ul>
 
                     <ul className="nav navbar-nav navbar-right">
-                        <li> <Link to="/profile"  className="btn" style={{height: '30px',marginRight:'10px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e'}}>My Profile</Link></li>
-                        <li><Link to="/postproject"  className="btn" style={{height: '30px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '25px'}}> Post a Project</Link></li>
+
+                        <li><Link to="/postproject"  className="btn" style={{height: '30px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '23px'}}> Post a Project</Link></li>
                     </ul>
                 </nav>
 

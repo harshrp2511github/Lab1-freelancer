@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {selectedProject} from "../actions";
+import freelancer from  '../images/download.png';
 
 class PostedProject extends Component{
 
@@ -19,6 +20,17 @@ class PostedProject extends Component{
             projects: []
         })
         this.getMyBiddedProjects(this.state);
+        API.doCheckLogin()
+            .then((status) => {
+                console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+                    this.props.redirectURL('/biddedprojects');
+                }
+                else{
+                    this.props.redirectURL('/');
+                }
+            });
     }
 
     getMyBiddedProjects = (userdata) =>{
@@ -36,6 +48,19 @@ class PostedProject extends Component{
             });
     };
 
+    handleLogout = () => {
+        API.doLogout()
+            .then((status) => {
+                console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+                    this.props.redirectURL('/');
+                }
+            });
+
+
+    }
+
     handleSubmit = () => {
         this.props.redirectURL('/myactivebiddedproject');
     }
@@ -44,12 +69,12 @@ class PostedProject extends Component{
         return this.state.projects.map((project) => {
             if(project.winnername == null){
                 return (
-                    <div className="container btn border border-primary" style={{
-                        border: '1px solid',
-                        marginTop: '2px',
-                        marginBottom: '2px',
+                    <div className="container border border-primary" style={{
+                        marginTop: '1px',
+                        marginBottom: '1px',
                         height: '150px',
                         color: 'black',
+                        backgroundColor: 'white',
                         textAlign: 'left'
                     }}>
                         <h3 onClick={() => this.handleSubmit(this.props.selectedProject(project))} style={{
@@ -95,11 +120,11 @@ class PostedProject extends Component{
             }
             else{
                 return (
-                    <div className="container btn border border-primary" style={{
-                        border: '1px solid',
-                        marginTop: '2px',
-                        marginBottom: '2px',
+                    <div className="container border border-primary" style={{
+                        marginTop: '1px',
+                        marginBottom: '1px',
                         height: '150px',
+                        backgroundColor: 'white',
                         color: 'black',
                         textAlign: 'left'
                     }}>
@@ -133,7 +158,7 @@ class PostedProject extends Component{
                         <h5 style={{paddingLeft: '800px', postion: 'absolute'}}> Bids:{project.projectbids} </h5>
                         <h5 style={{paddingLeft: '800px', paddingTop: '30px'}}>Price(USD): ${project.projectmin} -
                             ${project.projectmax}</h5>
-                        <h3 style={{ marginTop: '20px', textAlign: 'center', color: '#05911d', fontWeight: 'bold'}}>SOLD TO: {project.winnername} </h3>
+                        <h3 style={{ marginTop: '20px', marginLeft: '800px',textDecoration: 'underline', fontWeight: 'bold'}}>SOLD TO: {project.winnername} </h3>
 
                     </div>
                 )
@@ -147,12 +172,43 @@ class PostedProject extends Component{
     render(){
 
         return(
-            <div>
-                <div className="container btn" style={{border: '1px solid #090030',color: 'white', textAlign: 'left',marginTop: '20px', height: '50px',paddingLeft: '20px', backgroundColor: '#090030'}} >
-                    <h4>PROJECTS</h4>
+            <div style={{
+                background: '#dbdbdb',
+                position: 'fixed',
+                bottom: '0',
+                right: '0',
+                left: '0',
+                top: '0',
+            overflowY: 'scroll'}}>
+                <nav className="navbar navbar-default" style={{paddingLeft:'20px',  paddingRight: '25px', marginBottom:'0px',backgroundColor: 'white', border: '1px solid black transparent'}}>
+
+                    <Link to="/inapp">
+                        <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px', marginLeft: '50px'}} />
+                    </Link>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><button type="button" className="btn" onClick={() => this.handleLogout()} style={{marginTop: '10px', marginRight: '50px',height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span class="glyphicon glyphicon-off" ></span> Logout</button></li>
+                    </ul>
+                </nav>
+
+                <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#073c59',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
+
+                    <ul className="nav navbar-nav ">
+                        <li><Link to="/inapp" style={{color: 'white', marginLeft: '75px'}}>  Home </Link></li>
+                        <li><Link to="/profile" style={{color: 'white',paddingLeft: '25px'}}> My Profile</Link></li>
+                        <li><Link to="/postedprojects" style={{color: 'white',paddingLeft: '25px'}}> Posted Projects</Link></li>
+                        <li><Link to="/biddedprojects" style={{color: 'white',paddingLeft: '25px'}}> Bidded Projects</Link></li>
+                    </ul>
+
+                    <ul className="nav navbar-nav navbar-right">
+
+                        <li><Link to="/postproject"  className="btn" style={{height: '30px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '23px'}}> Post a Project</Link></li>
+                    </ul>
+                </nav>
+                <div className="container" style={{paddingTop: '10px',color: 'white',backgroundColor: '#3a3b3d', textAlign: 'left',marginTop: '20px', height: '50px',paddingLeft: '20px'}} >
+                    <h4>MY BIDDED PROJECTS</h4>
                 </div>
                 {this.renderProjects()}
-                <Link to="/inapp" class="btn" style={{ marginBottom: '100px',position: 'absolute' ,backgroundColor: '#fc951e', color: 'white', textAlign: 'center', marginTop: '200px', marginLeft: '-650px'}}>BACK TO HOME</Link>
+                <Link to="/inapp" class="btn" style={{ marginBottom: '100px',position: 'absolute' ,backgroundColor: '#fc951e', color: 'white', textAlign: 'center', marginTop: '100px', marginLeft: '-50px'}}>BACK TO HOME</Link>
             </div>
         );
     }

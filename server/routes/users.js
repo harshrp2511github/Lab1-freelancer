@@ -459,7 +459,7 @@ router.post('/getmybiddedprojectlist', function(req, res, next) {
 
     var email = req.body.email;
 
-    connection.query('SELECT * FROM bids INNER JOIN projects ON bids.projectname = projects.projectname WHERE bids.biddingparty = ? ',email ,function (error, results, fields) {
+    connection.query('SELECT * FROM bids INNER JOIN projects ON bids.projectname = projects.projectname WHERE bids.biddingparty  = ? ',email ,function (error, results, fields) {
         if (error) {
             // console.log("error ocurred",error);
             res.json({

@@ -26,6 +26,17 @@ class MyActiveBiddedProject extends Component{
             message: ''
         })
         this.getBids(this.state);
+        API.doCheckLogin()
+            .then((status) => {
+                console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+                    this.props.redirectURL('/myactivebiddedproject');
+                }
+                else{
+                    this.props.redirectURL('/');
+                }
+            });
     }
 
     getBids = (userdata) =>{
@@ -43,7 +54,7 @@ class MyActiveBiddedProject extends Component{
             });
     };
 
-    handleSubmit = () => {
+    handleLogout = () => {
         API.doLogout()
             .then((status) => {
                 console.log(JSON.stringify(status));
@@ -55,6 +66,7 @@ class MyActiveBiddedProject extends Component{
 
 
     }
+
 
     // handleHire = (userdata) => {
     //     API.closeProject(userdata)
@@ -79,12 +91,11 @@ class MyActiveBiddedProject extends Component{
         return this.state.bids.map((bid) => {
 
             return (
-                <div className="container btn border border-primary" style={{
+                <div className="container border border-primary" style={{
                     width: '1000px',color: 'white', textAlign: 'left',paddingLeft: '20px',
-                    border: '1px solid',
-                    marginTop: '2px',
-                    marginBottom: '2px',
-                    height: '200px',
+                    marginTop: '1px',
+                    marginBottom: '1px',
+                    height: '170px',
                     color: 'black',
                     backgroundColor: 'white',
                     textAlign: 'left'}}>
@@ -110,6 +121,31 @@ class MyActiveBiddedProject extends Component{
                     top: '0',
                     overflowY: 'scroll'
                 }}>
+                    <nav className="navbar navbar-default" style={{paddingLeft:'20px',  paddingRight: '25px', marginBottom:'0px',backgroundColor: 'white', border: '1px solid black transparent'}}>
+
+                        <Link to="/inapp">
+                            <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px', marginLeft: '50px'}} />
+                        </Link>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li><button type="button" className="btn" onClick={() => this.handleLogout()} style={{marginTop: '10px', marginRight: '50px',height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span class="glyphicon glyphicon-off" ></span> Logout</button></li>
+                        </ul>
+                    </nav>
+
+                    <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#073c59',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
+
+                        <ul className="nav navbar-nav ">
+                            <li><Link to="/inapp" style={{color: 'white', marginLeft: '75px'}}>  Home </Link></li>
+                            <li><Link to="/profile" style={{color: 'white',paddingLeft: '25px'}}> My Profile</Link></li>
+                            <li><Link to="/postedprojects" style={{color: 'white',paddingLeft: '25px'}}> Posted Projects</Link></li>
+                            <li><Link to="/biddedprojects" style={{color: 'white',paddingLeft: '25px'}}> Bidded Projects</Link></li>
+                        </ul>
+
+                        <ul className="nav navbar-nav navbar-right">
+
+                            <li><Link to="/postproject"  className="btn" style={{height: '30px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '23px'}}> Post a Project</Link></li>
+                        </ul>
+                    </nav>
+
 
 
                     <div className="container">
@@ -175,14 +211,13 @@ class MyActiveBiddedProject extends Component{
 
 
                         <div style={{marginTop: '200px', marginBottom: '100px', marginLeft: '-38px'}}>
-                            <div className="container btn" style={{
-                                border: '1px solid #3b80ef',
+                            <div className="container" style={{
                                 color: 'white',
                                 textAlign: 'left',
                                 height: '50px',
                                 width: '1000px',
                                 paddingLeft: '20px',
-                                backgroundColor: '#3b80ef'
+                                backgroundColor: '#3a3b3d'
                             }}>
                                 <h4>BIDS</h4>
                             </div>
@@ -207,29 +242,28 @@ class MyActiveBiddedProject extends Component{
                     top: '0',
                     overflowY: 'scroll'
                 }}>
-                    <nav className="navbar navbar-default" style={{
-                        paddingLeft: '20px',
-                        paddingRight: '25px',
-                        marginBottom: '0px',
-                        backgroundColor: 'white',
-                        border: '1px solid black transparent'
-                    }}>
+                    <nav className="navbar navbar-default" style={{paddingLeft:'20px',  paddingRight: '25px', marginBottom:'0px',backgroundColor: 'white', border: '1px solid black transparent'}}>
 
                         <Link to="/inapp">
-                            <img className="nav navbar-nav navbar-left" src={freelancer}
-                                 style={{width: '250px', marginLeft: '50px'}}/>
+                            <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px', marginLeft: '50px'}} />
                         </Link>
                         <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <button type="button" className="btn" onClick={() => this.handleSubmit()} style={{
-                                    marginTop: '10px',
-                                    marginRight: '50px',
-                                    height: '40px',
-                                    color: 'white',
-                                    backgroundColor: '#fc951e'
-                                }}><span class="glyphicon glyphicon-off"></span> Logout
-                                </button>
-                            </li>
+                            <li><button type="button" className="btn" onClick={() => this.handleLogout()} style={{marginTop: '10px', marginRight: '50px',height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span class="glyphicon glyphicon-off" ></span> Logout</button></li>
+                        </ul>
+                    </nav>
+
+                    <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#073c59',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
+
+                        <ul className="nav navbar-nav ">
+                            <li><Link to="/inapp" style={{color: 'white', marginLeft: '75px'}}>  Home </Link></li>
+                            <li><Link to="/profile" style={{color: 'white',paddingLeft: '25px'}}> My Profile</Link></li>
+                            <li><Link to="/postedprojects" style={{color: 'white',paddingLeft: '25px'}}> Posted Projects</Link></li>
+                            <li><Link to="/biddedprojects" style={{color: 'white',paddingLeft: '25px'}}> Bidded Projects</Link></li>
+                        </ul>
+
+                        <ul className="nav navbar-nav navbar-right">
+
+                            <li><Link to="/postproject"  className="btn" style={{height: '30px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '23px'}}> Post a Project</Link></li>
                         </ul>
                     </nav>
 

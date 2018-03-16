@@ -41,12 +41,13 @@ class ProjectList extends Component{
         return this.state.projects.map((project) => {
             if(project.projectopen == 'yes') {
                 return (
-                    <div className="container btn border border-primary" style={{
-                        border: '1px solid',
-                        marginTop: '2px',
-                        marginBottom: '2px',
+                    <div className="container " style={{
+                        marginTop: '1px',
+                        marginBottom: '1px',
                         height: '150px',
                         color: 'black',
+                        backgroundColor: 'white',
+                        boxShadow: '10px #a8a6a6',
                         textAlign: 'left'
                     }}>
                         <h3 onClick={() => this.handleSubmit(this.props.selectedProject(project))} style={{
@@ -102,7 +103,7 @@ class ProjectList extends Component{
 
         return(
             <div style={{ marginBottom: '100px'}}>
-                <div className="container btn" style={{border: '1px solid #090030',color: 'white', textAlign: 'left', height: '50px',paddingLeft: '20px', backgroundColor: '#090030'}}>
+                <div className="container" style={{color: 'white', textAlign: 'left', height: '50px',paddingTop: '10px',paddingLeft: '20px', backgroundColor: '#3a3b3d'}}>
                     <h4>PROJECTS</h4>
                 </div>
                 {this.renderProjects()}
