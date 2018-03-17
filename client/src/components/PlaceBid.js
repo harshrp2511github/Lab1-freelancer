@@ -14,7 +14,8 @@ class PlaceBid extends Component{
         price: '',
         days: '',
         message: '',
-        bids: []
+        bids: [],
+        errormessage: ''
     }
 
     componentWillMount(){
@@ -25,7 +26,8 @@ class PlaceBid extends Component{
             price: '',
             days: '',
             message: '',
-            bids: []
+            bids: [],
+            errormessage: ''
         })
 
 
@@ -73,40 +75,62 @@ class PlaceBid extends Component{
 
     }
 
+    handleUpdate = (userdata) => {
+
+        this.setState({
+            errormessage: '',
+            type: true
+        },()=>this.handleAfterUpdate(userdata));
+
+
+    }
+    handleAfterUpdate = (userdata) => {
+        if (this.state.price.length<1 || this.state.days.length<1) {
+            this.setState({
+                errormessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.addBid(userdata));
+        }
+        else{
+            this.addBid(userdata)
+        }
+
+    }
+
         addBid = (userdata) => {
 
+        if(this.state.errormessage != "Input Cannot Be Empty") {
+            API.addBid(userdata)
+                .then((status) => {
+                    console.log(JSON.stringify(status));
+                    if (status.status == 'true') {
 
-        API.addBid(userdata)
-            .then((status) => {
-                console.log(JSON.stringify(status));
-                if (status.status == 'true') {
+                        this.setState({
 
-                    this.setState({
-
-                        message: status.message,
-                    });
-                    API.updateBidCount(userdata)
-                        .then((status) => {
-                            console.log(JSON.stringify(status));
-
+                            message: status.message,
                         });
-                    API.updateAvg(this.state)
-                        .then((status) => {
-                            console.log(JSON.stringify(status));
+                        API.updateBidCount(userdata)
+                            .then((status) => {
+                                console.log(JSON.stringify(status));
 
-                        })
+                            });
+                        API.updateAvg(this.state)
+                            .then((status) => {
+                                console.log(JSON.stringify(status));
 
-                    this.props.redirectURL('/inapp')
-                } else if (status.status == 'false') {
+                            })
 
-                    this.setState({
+                        this.props.redirectURL('/inapp')
+                    } else if (status.status == 'false') {
 
-                        message: status.message
-                    });
-                }
-            });
+                        this.setState({
 
+                            message: status.message
+                        });
+                    }
+                });
 
+        }
     };
 
     renderProjects(){
@@ -276,15 +300,21 @@ class PlaceBid extends Component{
                             </div>
 
                             <div style={{marginTop: '100px', marginLeft: '50px', textAlign: 'left'}}>
-                                <button className="btn" onClick={() => this.addBid(this.state)}
+                                <button className="btn" onClick={() => this.handleUpdate(this.state)}
                                         style={{backgroundColor: '#3b80ef', color: 'white'}}>SUBMIT BID
                                 </button>
                                 <Link to="/activeproject" className="btn"
                                       style={{backgroundColor: '#3b80ef', color: 'white', marginLeft: '40px'}}>CANCEL
                                     BID</Link>
+                                <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '50px'}}>
+                                    <Message message={this.state.errormessage}/>
+                                </div>
+                                <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '50px'}}>
+                                    <Message message={this.state.message}/>
+                                </div>
                             </div>
-                            <br/><br/><br/>
-                            <Message message={this.state.message}/>
+
+
                         </div>
 
 

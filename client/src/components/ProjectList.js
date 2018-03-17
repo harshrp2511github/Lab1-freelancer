@@ -37,59 +37,119 @@ class ProjectList extends Component{
         this.props.redirect('/activeproject');
     }
 
+    handleSubmit1 = () => {
+        this.props.redirect('/myactiveproject');
+    }
+
     renderProjects(){
         return this.state.projects.map((project) => {
             if(project.projectopen == 'yes') {
-                return (
-                    <div className="container " style={{
-                        marginTop: '1px',
-                        marginBottom: '1px',
-                        height: '150px',
-                        color: 'black',
-                        backgroundColor: 'white',
-                        boxShadow: '10px #a8a6a6',
-                        textAlign: 'left'
-                    }}>
-                        <h3 onClick={() => this.handleSubmit(this.props.selectedProject(project))} style={{
-                            marginTop: '5px',
-                            marginLeft: '10px',
-                            position: 'absolute',
-                            textDecoration: 'underline',
-                            color: '#314b7f'
-                        }}><b>{project.projectname}</b></h3>
-                        <h5 style={{marginLeft: '425px', fontSize: '15px', position: 'absolute'}}> Posted
-                            by: {project.name}</h5>
-                        <div style={{
-                            marginTop: '50px',
-                            marginLeft: '10px',
-                            height: '70px',
-                            width: '650px',
-                            position: 'absolute',
-                            overflow: 'hidden',
-                            whiteSpace: 'nowrap',
-                            textOverflow: 'ellipsis'
-                        }}>Description: {project.projectdesc}
+                if(project.email == this.props.user.email){
+                    return (
+                        <div className="container" style={{
+                            marginTop: '1px',
+                            backgroundColor: 'white',
+                            marginBottom: '1px',
+                            height: '150px',
+                            color: 'black',
+                            textAlign: 'left'
+                        }}>
+                            <h3 onClick={() => this.handleSubmit1(this.props.selectedProject(project))} style={{
+                                marginTop: '5px',
+                                marginLeft: '10px',
+                                position: 'absolute',
+                                textDecoration: 'underline',
+                                color: '#314b7f'
+                            }}><b>{project.projectname}</b></h3>
+                            <h5 style={{marginLeft: '425px', fontSize: '15px', position: 'absolute'}}> Posted
+                                by: {project.name}</h5>
+                            <div style={{
+                                marginTop: '50px',
+                                marginLeft: '10px',
+                                height: '70px',
+                                width: '650px',
+                                position: 'absolute',
+                                overflow: 'hidden',
+                                whiteSpace: 'nowrap',
+                                textOverflow: 'ellipsis'
+                            }}>Description: {project.projectdesc}
+                            </div>
+                            <h5 style={{
+                                marginTop: '100px',
+                                height: '25px',
+                                marginLeft: '10px',
+                                width: '900px',
+                                position: 'absolute'
+                            }}>Skills: {project.projectskills}</h5>
+                            <h5 style={{paddingLeft: '800px', postion: 'absolute'}}> Bids:{project.projectbids} </h5>
+                            <h5 style={{paddingLeft: '800px', paddingTop: '30px'}}>Price(USD): ${project.projectmin} -
+                                ${project.projectmax}</h5>
+                            <button className="btn" onClick={() => this.handleSubmit1(this.props.selectedProject(project))}
+                                    style={{
+                                        marginLeft: '1040px',
+                                        marginTop: '10px',
+                                        backgroundColor: '#05911d',
+                                        color: 'white'
+                                    }}>VIEW BIDS!!
+                            </button>
                         </div>
-                        <h5 style={{
-                            marginTop: '100px',
-                            height: '25px',
-                            marginLeft: '10px',
-                            width: '900px',
-                            position: 'absolute'
-                        }}>Skills: {project.projectskills}</h5>
-                        <h5 style={{paddingLeft: '800px', postion: 'absolute'}}> Bids:{project.projectbids} </h5>
-                        <h5 style={{paddingLeft: '800px', paddingTop: '30px'}}>Price(USD): ${project.projectmin} -
-                            ${project.projectmax}</h5>
-                        <button className="btn" onClick={() => this.handleSubmit(this.props.selectedProject(project))}
-                                style={{
-                                    marginLeft: '1050px',
-                                    marginTop: '10px',
-                                    backgroundColor: '#05911d',
-                                    color: 'white'
-                                }}>BID NOW!!
-                        </button>
-                    </div>
-                )
+                    )
+
+
+                }
+                else {
+                    return (
+                        <div className="container " style={{
+                            marginTop: '1px',
+                            marginBottom: '1px',
+                            height: '150px',
+                            color: 'black',
+                            backgroundColor: 'white',
+                            boxShadow: '10px #a8a6a6',
+                            textAlign: 'left'
+                        }}>
+                            <h3 onClick={() => this.handleSubmit(this.props.selectedProject(project))} style={{
+                                marginTop: '5px',
+                                marginLeft: '10px',
+                                position: 'absolute',
+                                textDecoration: 'underline',
+                                color: '#314b7f'
+                            }}><b>{project.projectname}</b></h3>
+                            <h5 style={{marginLeft: '425px', fontSize: '15px', position: 'absolute'}}> Posted
+                                by: {project.name}</h5>
+                            <div style={{
+                                marginTop: '50px',
+                                marginLeft: '10px',
+                                height: '70px',
+                                width: '650px',
+                                position: 'absolute',
+                                overflow: 'hidden',
+                                whiteSpace: 'nowrap',
+                                textOverflow: 'ellipsis'
+                            }}>Description: {project.projectdesc}
+                            </div>
+                            <h5 style={{
+                                marginTop: '100px',
+                                height: '25px',
+                                marginLeft: '10px',
+                                width: '900px',
+                                position: 'absolute'
+                            }}>Skills: {project.projectskills}</h5>
+                            <h5 style={{paddingLeft: '800px', postion: 'absolute'}}> Bids:{project.projectbids} </h5>
+                            <h5 style={{paddingLeft: '800px', paddingTop: '30px'}}>Price(USD): ${project.projectmin} -
+                                ${project.projectmax}</h5>
+                            <button className="btn"
+                                    onClick={() => this.handleSubmit(this.props.selectedProject(project))}
+                                    style={{
+                                        marginLeft: '1050px',
+                                        marginTop: '10px',
+                                        backgroundColor: '#05911d',
+                                        color: 'white'
+                                    }}>BID NOW!!
+                            </button>
+                        </div>
+                    )
+                }
             }
             else{
                 return(
@@ -114,6 +174,7 @@ class ProjectList extends Component{
 
 function mapStateToProps(state){
     return{
+        user: state.loginUser,
         project: state.selectedProject
     }
 }

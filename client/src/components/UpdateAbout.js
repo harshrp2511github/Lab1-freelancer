@@ -7,6 +7,7 @@ import unknown from '../images/unknown.png';
 import white from '../images/white.jpg'
 import {connect} from "react-redux";
 import * as API from "../api/API";
+import Message from "./Message";
 
 class UpdateAbout extends Component{
 
@@ -16,7 +17,8 @@ class UpdateAbout extends Component{
         name: '',
         phone: '',
         about: '',
-        skills: ''
+        skills: '',
+        errormessage: ''
 
     }
 
@@ -26,7 +28,8 @@ class UpdateAbout extends Component{
             name: '',
             phone: '',
             about: '',
-            skills: ''
+            skills: '',
+            errormessage: ''
 
         });
 
@@ -77,14 +80,36 @@ class UpdateAbout extends Component{
     //     this.setState({[e.target.name]: e.target.value});
     // }
 
-    handleUpdate = (userinfo) => {
-        API.updateAbout(userinfo)
-            .then((status) => {
-                console.log(JSON.stringify(status));
-            })
+    handleUpdate = (userdata) => {
 
-        this.props.redirectURL("/profile");
+        this.setState({
+            errormessage: '',
+            type: true
+        },()=>this.handleAfterUpdate(userdata));
+
+
+    }
+
+    handleAfterUpdate = (userdata) => {
+        if (this.state.about.length<1) {
+            this.setState({
+                errormessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.handleAfterValidation(userdata));
+        }
+        else{
+            this.handleAfterValidation(userdata)
+        }
+
+    }
+
+    handleAfterValidation = (userinfo) => {
+        if(this.state.errormessage != "Input Cannot Be Empty") {
+            API.updateAbout(userinfo);
+            this.props.redirectURL("/profile");
+        }
     };
+
 
     handleCancel = () =>{
         this.props.redirectURL("/profile");
@@ -146,7 +171,7 @@ class UpdateAbout extends Component{
                         <h2 style={{ textAlign: 'left', fontWeight: 'bold'}}>{this.state.name}</h2>
                         <h5 style={{ textAlign: 'left', marginTop: '40px'}}>{this.state.skills}</h5>
                         <div style={{ textAlign: 'left', marginTop: '40px'}}><textarea
-                            style={{width: '300px', height: '300px',color: 'black'}}
+                            style={{width: '300px', height: '200px',color: 'black'}}
                             type="text"
                             placeholder="Update your Description"
                             onChange={(event)=>{
@@ -155,6 +180,9 @@ class UpdateAbout extends Component{
                             }}
                             required
                         /></div>
+                        <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '35px'}}>
+                            <Message message={this.state.errormessage}/>
+                        </div>
 
                     </div>
 

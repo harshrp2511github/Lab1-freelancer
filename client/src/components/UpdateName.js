@@ -7,6 +7,7 @@ import * as API from "../api/API";
 import unknown from '../images/unknown.png';
 import white from '../images/white.jpg'
 import {connect} from "react-redux";
+import Message from "./Message";
 
 
 class UpdateName extends Component{
@@ -17,7 +18,8 @@ class UpdateName extends Component{
         name: '',
         phone: '',
         about: '',
-        skills: ''
+        skills: '',
+        errormessage: ''
 
     }
 
@@ -27,7 +29,8 @@ class UpdateName extends Component{
             name: '',
             phone: '',
             about: '',
-            skills: ''
+            skills: '',
+            errormessage: ''
 
         });
 
@@ -77,10 +80,34 @@ class UpdateName extends Component{
     // handleChange=(e)=> {
     //     this.setState({[e.target.name]: e.target.value});
     // }
+    handleUpdate = (userdata) => {
 
-    handleUpdate = (userinfo) => {
-        API.changeName(userinfo);
-        this.props.redirectURL("/profile");
+        this.setState({
+            errormessage: '',
+            type: true
+        },()=>this.handleAfterUpdate(userdata));
+
+
+    }
+
+    handleAfterUpdate = (userdata) => {
+        if (this.state.name.length<1) {
+            this.setState({
+                errormessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.handleAfterValidation(userdata));
+        }
+        else{
+            this.handleAfterValidation(userdata)
+        }
+
+    }
+
+    handleAfterValidation = (userinfo) => {
+        if(this.state.errormessage != "Input Cannot Be Empty") {
+            API.changeName(userinfo);
+            this.props.redirectURL("/profile");
+        }
     };
 
     handleCancel = () =>{
@@ -151,6 +178,9 @@ class UpdateName extends Component{
                             }}
                             required
                         /></div>
+                        <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '300px'}}>
+                            <Message message={this.state.errormessage}/>
+                        </div>
                         <h4 style={{ textAlign: 'left', marginTop: '40px'}}>{this.state.skills} </h4>
                         <h5 style={{ textAlign: 'left', marginTop: '40px'}}>{this.state.about}</h5>
                     </div>

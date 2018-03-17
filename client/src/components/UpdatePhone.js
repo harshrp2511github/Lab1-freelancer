@@ -7,6 +7,7 @@ import * as API from "../api/API";
 import unknown from '../images/unknown.png';
 import white from '../images/white.jpg'
 import {connect} from "react-redux";
+import Message from "./Message";
 
 
 class UpdatePhone extends Component{
@@ -17,7 +18,8 @@ class UpdatePhone extends Component{
         name: '',
         phone: '',
         about: '',
-        skills: ''
+        skills: '',
+        errormessage:''
 
     }
 
@@ -27,7 +29,8 @@ class UpdatePhone extends Component{
             name: '',
             phone: '',
             about: '',
-            skills: ''
+            skills: '',
+            errormessage: ''
 
         });
 
@@ -78,9 +81,46 @@ class UpdatePhone extends Component{
     //     this.setState({[e.target.name]: e.target.value});
     // }
 
-    handleUpdate = (userinfo) => {
-        API.updatePhone(userinfo);
-        this.props.redirectURL("/profile");
+    handleUpdate = (userdata) => {
+
+        this.setState({
+            errormessage: '',
+            type: true
+        },()=>this.handleAfterUpdate(userdata));
+
+
+    }
+
+    handleAfterUpdate = (userdata) => {
+        if (this.state.phone.length<1) {
+            this.setState({
+                errormessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.handleNumber(userdata));
+        }
+        else{
+            this.handleNumber(userdata)
+        }
+
+    }
+    handleNumber = (userdata) => {
+        if (this.state.phone.length<10) {
+            this.setState({
+                errormessage: 'Invalid Phone Number',
+                type: true
+            },()=>this.handleAfterValidation(userdata));
+        }
+        else{
+            this.handleAfterValidation(userdata)
+        }
+
+    }
+
+    handleAfterValidation = (userinfo) => {
+        if(this.state.errormessage != "Input Cannot Be Empty" && this.state.errormessage != "Invalid Phone Number" ) {
+            API.updatePhone(userinfo);
+            this.props.redirectURL("/profile");
+        }
     };
 
     handleCancel = () =>{
@@ -161,7 +201,7 @@ class UpdatePhone extends Component{
                         <span className="glyphicon glyphicon-earphone" style={{marginTop:'0px', color: '#0bc430'}}></span><br />
                         <div style={{ textAlign: 'left', marginTop: '20px', paddingLeft: '85px'}}><input
                             style={{width: '100px',color: 'black', paddingLeft: '0px'}}
-                            type="text"
+                            type="number"
                             placeholder="Phone"
                             name="name"
                             onChange={(event)=>{
@@ -170,6 +210,10 @@ class UpdatePhone extends Component{
                             }}
                             required
                         /></div>
+
+                        <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'center', marginLeft: '60px', position: 'absolute', marginTop: '30px'}}>
+                            <Message message={this.state.errormessage}/>
+                        </div>
                     </div>
 
                     <div style={{ position: 'absolute', marginTop: '0px', marginLeft: '950px', width: '50px', height: '450px', backgroundColor: '#efefef',  textAlign:'center'}}>

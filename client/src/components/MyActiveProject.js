@@ -225,7 +225,8 @@ class MyActiveProject extends Component{
                             {this.renderProjects()}
                         </div>
 
-                        <Link to="/postedprojects" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white', marginBottom: '100px'}}>BACK TO MY PROJECTS</Link>
+                        <Link to="/postedprojects" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white',marginTop: '50px', marginBottom: '100px'}}>GO TO POSTED PROJECTS</Link>
+                        <Link to="/inapp" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white',marginTop: '50px', marginBottom: '100px', marginLeft: '10px'}}>BACK TO HOME</Link>
 
                     </div>
 
@@ -324,7 +325,8 @@ class MyActiveProject extends Component{
                                 }}>${this.props.project.projectmin} - ${this.props.project.projectmax}</h2>
                             </div>
 
-                            <Link to="/postedprojects" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white',marginTop: '150px', marginBottom: '100px'}}>BACK TO MY PROJECTS</Link>
+                            <Link to="/postedprojects" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white',marginTop: '150px', marginBottom: '100px'}}>GO TO POSTED PROJECTS</Link>
+                            <Link to="/inapp" className="btn" style={{ backgroundColor: '#3b80ef', color: 'white',marginTop: '150px', marginBottom: '100px', marginLeft: '10px'}}>BACK TO HOME</Link>
 
 
 

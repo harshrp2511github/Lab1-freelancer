@@ -13,7 +13,10 @@ class Signup extends Component{
         password: '',
         username: '',
         message: '',
-        profile: ''
+        profile: '',
+        emailmessage: '',
+        passwordmessage: '',
+        usernamemessage: ''
 
 
     }
@@ -24,44 +27,111 @@ class Signup extends Component{
             password: '',
             username: '',
             message: '',
-            profile: ''
+            profile: '',
+            emailmessage:'',
+            usernamemessage: ''
         });
     }
 
     handleSignUp = (userdata) => {
 
-        API.doSignUp(userdata)
-            .then((res) => {
+            this.setState({
+                emailmessage: '',
+                usernamemessage: '',
+                passwordmessage: '',
+                type: true
+            },()=>this.handleAfterSignUp(userdata));
 
-                if (res.status === 'true') {
-                    this.setState({
-                        message: "Sign up Successful..!!",
-                    });
 
-                } else if (res.status === 'false') {
-                    this.setState({
+    }
 
-                        message: res.message
-                    });
-                }
-            });
+    handleAfterSignUp = (userdata) => {
+        var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+        if (!re.test(this.state.email) ) {
+            this.setState({
+                emailmessage: 'Invalid Email Address',
+                type: true
+            },()=>this.handleAfterEmail(userdata));
+        }
+        else{
+            this.handleAfterEmail(userdata)
+        }
 
-        API.setProfile(userdata)
-            .then((res) => {
+    }
 
-                if (res.status === 'true') {
-                    this.setState({
-                        profile: "Profile setup Successfull..!!",
-                    });
+    handleAfterEmail =(userdata) => {
 
-                } else if (res.status === 'false') {
-                    this.setState({
+        if(this.state.password.length < 8){
+            this.setState({
+                passwordmessage: 'Password should be atleast 8 in length',
+                type: true
+            },()=>this.handleAfterPassword(userdata));
+        }
+        else{
+            this.handleAfterPassword(userdata);
+        }
+    }
 
-                        profile: "Profile setup Failed"
-                    });
-                }
-            });
+    handleAfterPassword =(userdata) => {
+
+        if(this.state.username.length < 1){
+            this.setState({
+                usernamemessage: 'Enter your Username',
+                type: true
+            },()=>this.handleAfterValidation(userdata));
+        }
+        else{
+            this.handleAfterValidation(userdata)
+        }
+    }
+
+    handleAfterValidation = (userdata) => {
+debugger
+        if(this.state.emailmessage != "Invalid Email Address" && this.state.passwordmessage != "Password should be atleast 8 in length" && this.state.usernamemessage != "Enter your Username" ) {
+            API.doSignUp(userdata)
+                .then((res) => {
+
+                    if (res.status === 'true') {
+                        this.setState({
+                            message: "Sign up Successful..!!",
+                        });
+
+                    } else if (res.status === 'false') {
+                        this.setState({
+
+                            message: res.message
+                        });
+                    }
+                });
+
+            API.setProfile(userdata)
+                .then((res) => {
+
+                    if (res.status === 'true') {
+                        this.setState({
+                            profile: "Profile setup Successfull..!!",
+                        });
+
+                    } else if (res.status === 'false') {
+                        this.setState({
+
+                            profile: "Profile setup Failed"
+                        });
+                    }
+                });
+        }
     };
+
+    // handleEmailInput = (event) => {
+    //
+    //         this.setState({
+    //             email:event.target.value,
+    //             type:true
+    //         })
+    //
+    //
+    //
+    // }
 
     render(){
         return(
@@ -105,8 +175,11 @@ class Signup extends Component{
                                         autoFocus
                                     />
                                 </div>
-                            </div>
 
+                            </div>
+                            <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', marginBottom: '10px', textAlign: 'center'}}>
+                            <Message message={this.state.emailmessage}/>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-8" style={{paddingLeft: '100px'}}>
                                     <input
@@ -128,6 +201,9 @@ class Signup extends Component{
                                     />
                                 </div>
                             </div>
+                            <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', marginBottom: '10px', textAlign: 'center'}}>
+                                <Message message={this.state.usernamemessage}/>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-8" style={{paddingLeft: '100px'}}>
@@ -148,6 +224,9 @@ class Signup extends Component{
                                         required
                                     />
                                 </div>
+                            </div>
+                            <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', marginBottom: '10px', textAlign: 'center'}}>
+                                <Message message={this.state.passwordmessage}/>
                             </div>
 
                             <div class="form-group">

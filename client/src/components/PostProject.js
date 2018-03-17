@@ -18,7 +18,11 @@ class PostProject extends Component{
         projectopen: 'yes',
         projectbids: 0,
         projectavgbid: 0,
-        message: ''
+        message: '',
+        namemessage: '',
+        descriptionmessage: '',
+        skillsmessage: '',
+        budgetmessage: ''
     }
 
     componentDidMount(){
@@ -33,11 +37,92 @@ class PostProject extends Component{
             projectopen: 'yes',
             projectbids: 0,
             projectavgbid: 0,
-            message: ''
+            message: '',
+            namemessage: '',
+            descriptionmessage: '',
+            skillsmessage: '',
+            budgetmessage: ''
         });
     }
 
-    handleProject = (userdata) =>{
+    handleUpdate = (userdata) => {
+
+        this.setState({
+            namemessage: '',
+            descriptionmessage: '',
+            skillsmessage: '',
+            budgetmessage: '',
+            type: true
+        },()=>this.handleName(userdata));
+    }
+
+    handleName = (userdata) => {
+        if (this.state.projectname.length<1) {
+            this.setState({
+                namemessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.handleDescription(userdata));
+        }
+        else{
+            this.handleDescription(userdata)
+        }
+
+    }
+
+    handleDescription = (userdata) => {
+        if (this.state.projectdesc.length<1) {
+            this.setState({
+                descriptionmessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.handleSkills(userdata));
+        }
+        else{
+            this.handleSkills(userdata)
+        }
+
+    }
+
+    handleSkills = (userdata) => {
+        if (this.state.projectskills.length<1) {
+            this.setState({
+                skillsmessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.handleBudget(userdata));
+        }
+        else{
+            this.handleBudget(userdata)
+        }
+
+    }
+
+    handleBudget = (userdata) => {
+        if (this.state.projectmin.length<1 || this.state.projectmax.length <1) {
+            this.setState({
+                budgetmessage: 'Input Cannot Be Empty',
+                type: true
+            },()=>this.handleBudget2(userdata));
+        }
+        else{
+            this.handleBudget2(userdata)
+        }
+
+    }
+
+    handleBudget2 = (userdata) => {
+        if (Number(this.state.projectmin)>Number(this.state.projectmax)) {
+            this.setState({
+                budgetmessage: 'Max budget should be greater than min budget',
+                type: true
+            },()=>this.handleProject(userdata));
+        }
+        else{
+            this.handleProject(userdata)
+        }
+
+    }
+
+    handleProject = (userdata) => {
+        if (this.state.namemessage != 'Input Cannot Be Empty' && this.state.descriptionmessage != 'Input Cannot Be Empty' && this.state.skillsmessage != 'Input Cannot Be Empty' && this.state.budgetmessage != 'Input Cannot Be Empty' && this.state.budgetmessage != 'Max budget should be greater than min budget') {
         API.postProject(userdata)
             .then((res) => {
 
@@ -54,7 +139,7 @@ class PostProject extends Component{
                     });
                 }
             });
-
+    }
     }
 
     render(){
@@ -84,6 +169,9 @@ class PostProject extends Component{
                             });
                         }}
                         type="text" className="form-control" placeholder="e.g. Build me a website " style={{height: '50px'}} />
+                    <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '5px'}}>
+                        <Message message={this.state.namemessage}/>
+                    </div>
                     <h3 style={{ color: 'black', paddingTop: '50px'}}><b>Tell us more about your project</b></h3>
                     <h5 style={{ color: 'black', paddingTop: '15px'}}>Great project descriptions include a little bit about yourself, details of what you are trying to achieve, and any decisions that you have already made about your project. If there are things you are unsure of, don't worry, a freelancer will be able to help you fill in the blanks.</h5>
                     <textarea
@@ -94,6 +182,9 @@ class PostProject extends Component{
                             });
                         }}
                         type="text" className="form-control" placeholder="Describe your Project here..." style={{height: '200px'}} />
+                    <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '5px'}}>
+                        <Message message={this.state.descriptionmessage}/>
+                    </div>
 
                     <div style={{height: '50px', border: '1px dotted', marginTop: '40px' }}>
                         <label class="btn btn-primary btn-file" style={{marginTop: '8px', marginLeft: '8px', position: 'absolute', width: '100px'}}>
@@ -112,6 +203,9 @@ class PostProject extends Component{
                             });
                         }}
                         type="text" className="form-control" placeholder="Suggested skills examples:  Website Design , Logo Design , Mobile App Development , Data Entry , Article Writing" style={{height: '50px', marginTop: '20px'}} />
+                    <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '5px'}}>
+                        <Message message={this.state.skillsmessage}/>
+                    </div>
 
                     <h3 style={{ color: 'black', paddingTop: '40px'}}><b>What is your estimated budget?</b></h3>
                     <div style={{height: '50px', border: '1px dotted', marginTop: '40px' }}>
@@ -120,6 +214,7 @@ class PostProject extends Component{
                         </p>
 
                         <input
+                            type="number"
                             onChange={(event)=>{
                                 this.setState({
                                     projectmin:event.target.value,
@@ -128,6 +223,7 @@ class PostProject extends Component{
                             }}
                             className="form-control" placeholder="MIN(EST)" style={{marginLeft: '135px', marginTop: '8px', width: '100px', position: 'absolute'}} />
                         <input
+                            type="number"
                             onChange={(event)=>{
                                 this.setState({
                                     projectmax:event.target.value,
@@ -136,11 +232,14 @@ class PostProject extends Component{
                             }}
                             className="form-control" placeholder="MAX(EST)" style={{marginLeft: '260px', marginTop: '8px', width: '100px' }} />
                     </div>
+                    <div style={{ color: 'red', fontSize: '15px', paddingTop: '0px', textAlign: 'left', paddingLeft: '20px', position: 'absolute', marginTop: '5px'}}>
+                        <Message message={this.state.budgetmessage}/>
+                    </div>
 
                     <button
                         type="button"
                         className="btn"
-                        onClick={() => this.handleProject(this.state)}
+                        onClick={() => this.handleUpdate(this.state)}
                         style={{
                             height: '40px',
                             marginTop: '80px',
