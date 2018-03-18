@@ -52,14 +52,14 @@ class Login extends Component {
             .then((status) => {
                 console.log(JSON.stringify(status));
                 if (status.status == 'true') {
-
+                    localStorage.setItem("g_user",status.email);
                     this.setState({
                         isLoggedIn: true,
                         message: "Welcome to Freelancer..!!",
                     });
                     this.props.redirectURL("/inapp");
                 } else if (status.status == 'false') {
-
+                    localStorage.setItem("g_user",status.email);
                     this.setState({
                         isLoggedIn: false,
                         message: "Wrong username or password. Try again..!!"

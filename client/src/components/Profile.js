@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import freelancer from  '../images/download.png';
 import coverimage from '../images/cover.jpg';
-import profilebackground from '../images/profilebackground.jpg';
+
 import white from '../images/white.jpg'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import unknown from '../images/unknown.png';
+import unknown from '../images/harsh.JPG';
 import * as API from "../api/API";
 class Profile extends Component{
     state={
@@ -13,7 +13,8 @@ class Profile extends Component{
         name: '',
         phone: '',
         about: '',
-        skills: ''
+        skills: '',
+        profilepic: ''
 
     }
 
@@ -23,7 +24,8 @@ class Profile extends Component{
             name: '',
             phone: '',
             about: '',
-            skills: ''
+            skills: '',
+            profilepic: ''
 
         });
         this.setFields(this.state);
@@ -62,6 +64,7 @@ class Profile extends Component{
                         phone: status.phone,
                         about: status.aboutme,
                         skills: status.skills,
+                        profilepic: status.profilepic
                     });
 
                 }
@@ -89,11 +92,22 @@ class Profile extends Component{
                     <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px', marginLeft: '50px'}} />
                 </Link>
                 <ul className="nav navbar-nav navbar-right">
-                    <li><button type="button" className="btn" onClick={() => this.handleSubmit()} style={{marginTop: '10px', marginRight: '50px',height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span class="glyphicon glyphicon-off" ></span> Logout</button></li>
+                    <div class="dropdown" style={{ paddingTop: '2px'}}>
+                        <img src={this.state.profilepic} class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  style={{ marginRight: '110px',width: '50px', height: '50px', marginTop: '2px'}} />
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ backgroundColor: '#073c59'}}>
+                            <Link class="dropdown-item" to="/inapp" style={{ color: '#fc951e',paddingLeft: '5px'}}>Home</Link><br />
+                            <Link class="dropdown-item" to="/profile" style={{ color: '#fc951e',paddingLeft: '5px'}}>My Profile</Link><br />
+                            <Link class="dropdown-item" to="/postproject" style={{ color: '#fc951e',paddingLeft: '5px'}}>Post a Project</Link><br />
+                            <Link class="dropdown-item" to="/postedprojects" style={{ color: '#fc951e',paddingLeft: '5px'}}>Posted Projects</Link><br />
+                            <Link class="dropdown-item"  to="/biddedprojects" style={{ color: '#fc951e',paddingLeft: '5px'}}>Bidded Projects</Link><br />
+                            <Link class="dropdown-item" onClick={() => this.handleSubmit()} to="#" style={{ color: '#fc951e',paddingLeft: '5px'}}>Logout</Link>
+                        </div>
+                    </div>
                 </ul>
             </nav>
 
-            <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#073c59',marginTop: '0px',marginBottom: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
+            <nav className="navbar navbar-default" style={{ paddingRight: '50px',backgroundColor: '#073c59',marginTop: '0px',border: '1px solid black transparent', borderTop: '0px', height: '20px'}}>
 
                 <ul className="nav navbar-nav ">
                     <li><Link to="/inapp" style={{color: 'white', marginLeft: '75px'}}>  Home </Link></li>
@@ -114,7 +128,8 @@ class Profile extends Component{
 
                     <div style={{ position: 'absolute', marginTop: '-20px', marginLeft: '10px', width: '220px', height: '250px', backgroundColor: 'white', border: '0.2px solid'}}>
 
-                            <img src={unknown} style={{position: 'absolute', margin: '10px', marginLeft: '-100px' ,width: '200px', height: '230px', backgroundColor: 'white'}} />
+                            <img src={this.state.profilepic} style={{position: 'absolute', margin: '10px', marginLeft: '-100px' ,width: '200px', height: '230px', backgroundColor: 'white'}} />
+                        <div style={{position: 'absolute', marginLeft: '175px', marginTop: '225px'}}><Link to="/updateimage"><span className="glyphicon glyphicon-camera" style={{width: '50px', height: '50px'}} ></span></Link></div>
 
                     </div>
 

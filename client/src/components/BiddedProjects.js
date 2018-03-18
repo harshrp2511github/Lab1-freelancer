@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {selectedProject} from "../actions";
 import freelancer from  '../images/download.png';
+import unknown from '../images/harsh.JPG';
 
 class PostedProject extends Component{
 
     state={
         email: this.props.user.email,
+        profilepic: '',
         projects: []
     }
 
@@ -17,9 +19,13 @@ class PostedProject extends Component{
 
         this.setState({
             email: this.props.user.email,
+            profilepic: '',
             projects: []
         })
         this.getMyBiddedProjects(this.state);
+        this.setFields(this.state);
+
+
         API.doCheckLogin()
             .then((status) => {
                 console.log(JSON.stringify(status));
@@ -32,6 +38,22 @@ class PostedProject extends Component{
                 }
             });
     }
+
+    setFields = (userdata) => {
+        API.getProfile(userdata)
+            .then((status) => {
+                //console.log(JSON.stringify(status));
+                if (status.status == 'true') {
+
+                    this.setState({
+                        profilepic: status.profilepic
+                    });
+
+                }
+
+            });
+    };
+
 
     getMyBiddedProjects = (userdata) =>{
         API.getMyBiddedProjectList(userdata)
@@ -186,7 +208,18 @@ class PostedProject extends Component{
                         <img className="nav navbar-nav navbar-left" src={freelancer} style={{width: '250px', marginLeft: '50px'}} />
                     </Link>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><button type="button" className="btn" onClick={() => this.handleLogout()} style={{marginTop: '10px', marginRight: '50px',height: '40px',color: 'white', backgroundColor: '#fc951e'}}><span class="glyphicon glyphicon-off" ></span> Logout</button></li>
+                        <div class="dropdown" style={{ paddingTop: '2px'}}>
+                            <img src={this.state.profilepic} class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  style={{ marginRight: '110px',width: '50px', height: '50px', marginTop: '2px'}} />
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ backgroundColor: '#073c59'}}>
+                                <Link class="dropdown-item" to="/inapp" style={{ color: '#fc951e',paddingLeft: '5px'}}>Home</Link><br />
+                                <Link class="dropdown-item" to="/profile" style={{ color: '#fc951e',paddingLeft: '5px'}}>My Profile</Link><br />
+                                <Link class="dropdown-item" to="/postproject" style={{ color: '#fc951e',paddingLeft: '5px'}}>Post a Project</Link><br />
+                                <Link class="dropdown-item" to="/postedprojects" style={{ color: '#fc951e',paddingLeft: '5px'}}>Posted Projects</Link><br />
+                                <Link class="dropdown-item"  to="/biddedprojects" style={{ color: '#fc951e',paddingLeft: '5px'}}>Bidded Projects</Link><br />
+                                <Link class="dropdown-item" onClick={() => this.handleLogout()} to="#" style={{ color: '#fc951e',paddingLeft: '5px'}}>Logout</Link>
+                            </div>
+                        </div>
                     </ul>
                 </nav>
 
@@ -204,6 +237,7 @@ class PostedProject extends Component{
                         <li><Link to="/postproject"  className="btn" style={{height: '30px' ,marginTop: '10px', paddingTop: '5px',color: 'white', backgroundColor: '#fc951e', marginRight: '23px'}}> Post a Project</Link></li>
                     </ul>
                 </nav>
+
                 <div className="container" style={{paddingTop: '10px',color: 'white',backgroundColor: '#3a3b3d', textAlign: 'left',marginTop: '20px', height: '50px',paddingLeft: '20px'}} >
                     <h4>MY BIDDED PROJECTS</h4>
                 </div>
