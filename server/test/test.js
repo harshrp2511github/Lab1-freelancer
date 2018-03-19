@@ -37,23 +37,23 @@ describe('Negative Login Test', function() {
     });
 });
 
-// describe('Positive Signup Test', function() {
-//
-//     it('user should  be able to signup with unique email, and valid username and password', function (done) {
-//         request.post('http://localhost:3001/users/signup', {
-//             form: {
-//                 email: 'root3@root3.com',
-//                 username: 'root1',
-//                 password: 'root1.12345',
-//                 credentials: true
-//             }
-//         }, function (error, response, body) {
-//             console.log(response.statusCode);
-//             assert.equal(201, response.statusCode);
-//             done();
-//         });
-//     });
-// });
+describe('Positive Signup Test', function() {
+
+    it('user should  be able to signup with unique email, and valid username and password', function (done) {
+        request.post('http://localhost:3001/users/signup', {
+            form: {
+                email: 'root4@root4.com',
+                username: 'root1',
+                password: 'root1.12345',
+                credentials: true
+            }
+        }, function (error, response, body) {
+            console.log(response.statusCode);
+            assert.equal(201, response.statusCode);
+            done();
+        });
+    });
+});
 
 describe('Negative Signup Test', function() {
 
@@ -78,7 +78,7 @@ describe('Positive Placebid Test', function() {
     it('user should be able to bid on a project he has not already bid on', function (done) {
         request.post('http://localhost:3001/users/addbid', {
             form: {
-                projectname:'Website2',
+                projectname:'Cloud2',
                 biddingparty:'rt@rt.com',
                 name: 'Rachel',
                 price: 300,
@@ -129,21 +129,7 @@ describe('Positive get My Posted Projects  Test', function() {
     });
 });
 
-describe('Positive get My Posted Projects  Test', function() {
 
-    it('user should be able to get list of all projects he has posted', function (done) {
-        request.post('http://localhost:3001/users/getmyprojectlist', {
-            form: {
-                email: 'root@root.com',
-                credentials: true
-            }
-        }, function (error, response, body) {
-            console.log(response.statusCode);
-            assert.equal(201, response.statusCode);
-            done();
-        });
-    });
-});
 
 describe('Positive get Bids on Projects  Test', function() {
 
